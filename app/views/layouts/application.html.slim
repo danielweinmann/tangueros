@@ -1,0 +1,39 @@
+doctype html
+html lang="pt"
+  head
+    meta charset="utf-8"
+    meta name="robots" content="index, follow"
+    meta name="viewport" content="initial-scale=1.0, width=device-width"
+    title== "#{"#{strip_tags(yield :title)} · " if content_for?(:title)} Tangueros"
+    link rel="shortcut icon" href==image_path('logo.png')
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = csrf_meta_tag
+  body[data-namespace="#{namespace}" data-controller="#{controller_name}" data-action="#{action_name}" data-locale="#{I18n.locale}"]
+    - unless controller_name == 'charts' && action_name == 'index' && !current_user
+      .bg-dark-ice.border-bottom.big-border-top
+        .row.columns
+          .float-left
+            = link_to root_path, class: 'no-decoration' do
+              .float-left
+                = image_tag 'logo.png', class: 'logo'
+              .float-left
+                h1.homenaje.gray.no-margin-bottom Tangueros
+                h4.dark-gray The social network for tango dancers
+          .float-right.margin-top
+            ul.menu
+              - if current_user
+                li= link_to t('sign_out'), destroy_user_session_path, method: :delete
+              - else
+                li.hide-for-small-only= link_to t('devise.shared.links.sign_up'), new_user_registration_path
+                li.hide-for-small-only= link_to t('devise.shared.links.sign_in'), new_user_session_path
+    br
+    - for key, msg in flash
+      - unless key == :timedout
+        - key = "success" if key == "notice"
+        - key = "alert" if ["failure", "error"].include?(key)
+        div(class="callout text-center #{key}" data-closable)
+          = msg
+          button(class="close-button" aria-label="Fechar aviso" type="button" data-close)
+            span aria-hidden="true" &times;
+    = yield

@@ -1,0 +1,14 @@
+en:
+  sign_out: Sign out
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} successfully created."
+        alert: "%{resource_name} could not be created."
+      update:
+        notice: "%{resource_name} successfully updated."
+        alert: "%{resource_name} could not be updated."
+      destroy:
+        notice: "%{resource_name} successfully destroyed."
+        alert: "%{resource_name} could not be destroyed."
+    not_authorized: "You don't have the necessary permissions to perform this action."
