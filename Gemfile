@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
 ruby "2.3.0"
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
 gem 'foundation-rails'
 gem 'slim'
@@ -20,6 +21,7 @@ gem 'omniauth-facebook'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'high_voltage'
 gem 'font-awesome-rails'
+gem 'paperclip'
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -13,6 +13,10 @@
               = link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path, class: 'large button expand small-12 facebook'
             = render 'shared/or'
             .row.small-margin-top
+              = f.text_field :first_name, class: "large-12 columns", placeholder: "First name"
+            .row
+              = f.text_field :last_name, class: "large-12 columns", placeholder: "Last name"
+            .row
               = f.email_field :email, class: "large-12 columns", placeholder: "Email"
             .row
               = f.password_field :password, autocomplete: "off", class: "large-12 columns", placeholder: "Password"

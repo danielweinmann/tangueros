@@ -20,3 +20,4 @@
 
 .gems
 .DS_Store
+.env

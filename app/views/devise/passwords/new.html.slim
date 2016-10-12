@@ -1,6 +1,7 @@
-= foundation_devise_error_messages!
 .row
   .medium-6.medium-centered.columns
+    = render 'shared/flash'
+    = render partial: 'shared/error_messages', resource: resource
     .login-box
       .row
         .large-12.columns

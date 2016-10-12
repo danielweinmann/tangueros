@@ -1,6 +1,17 @@
-ul.menu.clearfix
-  - if current_user
-    li.float-right= link_to t('sign_out'), destroy_user_session_path, method: :delete, class: 'dark-gray'
-  - else
-    li.float-right= link_to t('devise.shared.links.sign_in'), new_user_session_path, class: 'dark-gray'
-    li.float-right= link_to t('devise.shared.links.sign_up'), new_user_registration_path, class: 'dark-gray'
+- reveal = false unless defined?(reveal)
+- if current_user
+  ul.menu data-dropdown-menu=(reveal ? nil : 'true') class=(reveal ? 'vertical text-center' : 'dropdown')
+    li
+      a.dark-gray style=("font-size: 1.5rem" if reveal)
+        = image_tag current_user.thumb_url, class: 'thumb'
+        div class=(reveal ? "margin-top" : 'small-margin-left') style="display: #{reveal ? 'block' : 'inline'}"= current_user.full_name
+      ul.menu class=('vertical text-center' if reveal)
+        li= link_to t('sign_out'), destroy_user_session_path, method: :delete, class: 'dark-gray'
+- else
+  - if reveal
+    = image_tag 'logo.png'
+    h1.homenaje.gray.no-margin-bottom.huge Tangueros
+    h2.dark-gray The social network for tango dancers
+  ul.menu class=('vertical text-center' if reveal) style="margin-top: 0.75rem;"
+    li= link_to t('devise.shared.links.sign_up'), new_user_registration_path, class: 'dark-gray'
+    li= link_to t('devise.shared.links.sign_in'), new_user_session_path, class: 'dark-gray'

@@ -19,12 +19,15 @@ html lang="pt"
             .float-left
               h1.homenaje.gray.no-margin-bottom.huge.small-margin-top-small-only Tangueros
               h4.dark-gray.hide-for-small-only The social network for tango dancers
-        .float-right.hide-for-small-only style="margin-top: 2.3rem;"= render 'layouts/user_menu'
-        .float-right style="margin-top: 2.1rem;" data-responsive-toggle="small-menu" data-hide-for="medium"
-          button.gray(data-toggle)
+        .float-right.hide-for-small-only.margin-top
+          = render "layouts/user_menu"
+        .float-right.hide-for-medium style="margin-top: 1.75rem;"
+          button.gray(data-open="reveal-menu")
             = fa_icon 'bars', style: 'font-size: 24px; margin-right: 1rem;'
-    #small-menu.bg-light-gray.hide-for-medium
-      ul.menu= render 'layouts/user_menu'
+    #reveal-menu.reveal.text-center(data-reveal)
+      = render partial: "layouts/user_menu", locals: { reveal: true }
+      button.close-button.gray data-close="reveal-menu" aria-label="Close menu" type="button"
+        span(aria-hidden) &times;
     br
     br
     .row.columns

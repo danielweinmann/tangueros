@@ -16,7 +16,7 @@
 .button.facebook
   background: $facebook
   &:hover
-    background: $light-facebook
+    background: scale-color($facebook, $lightness: -15%)
 
 .bg-gray
   background: $gray
@@ -46,8 +46,17 @@
   @include breakpoint(small only)
     margin-top: 0.5rem
 
+.margin-bottom
+  margin-bottom: 1rem
+
+.big-margin-bottom
+  margin-bottom: 2rem
+
 .no-margin-bottom
   margin-bottom: 0
+
+.small-margin-left
+  margin-left: 0.5rem
 
 .no-decoration
   text-decoration: none
@@ -81,3 +90,10 @@
 .separator-text
   float: left
   width: 10%
+
+.callout
+  font-size: 1.2rem
+
+.thumb
+  width: 48px
+  border-radius: 50%

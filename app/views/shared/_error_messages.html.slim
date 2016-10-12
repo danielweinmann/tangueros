@@ -1,6 +1,6 @@
 - unless resource.errors.empty?
   .callout.alert(data-closable)
-    h5 Ooops! Please review the following issues:
+    h4 Ooops! Please review the following issues:
     ul
       - resource.errors.full_messages.each do |message|
         li= message

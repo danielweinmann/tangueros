@@ -45,7 +45,7 @@
 // 1. Global
 // ---------
 
-$global-font-size: 100%;
+$global-font-size: 120%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
@@ -66,8 +66,8 @@ $body-font-family: 'Open Sans', sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
-$global-weight-normal: normal;
-$global-weight-bold: bold;
+$global-weight-normal: 400;
+$global-weight-bold: 700;
 $global-radius: 0;
 $global-text-direction: ltr;
 $global-flexbox: false;
@@ -261,12 +261,12 @@ $buttongroup-expand-max: 6;
 // -----------
 
 $callout-background: $white;
-$callout-background-fade: 85%;
-$callout-border: 1px solid rgba($black, 0.25);
-$callout-margin: 0 0 1rem 0;
-$callout-padding: 1rem;
-$callout-font-color: $body-font-color;
-$callout-font-color-alt: $body-background;
+$callout-background-fade: 0%;
+$callout-border: 1px solid rgba($ice, 0.25);
+$callout-margin: 0 0 3rem 0;
+$callout-padding: 1rem 3rem;
+$callout-font-color: $white;
+$callout-font-color-alt: $black;
 $callout-radius: $global-radius;
 $callout-link-tint: 30%;
 
@@ -278,8 +278,8 @@ $closebutton-offset-horizontal: 1rem;
 $closebutton-offset-vertical: 0.5rem;
 $closebutton-size: 2em;
 $closebutton-lineheight: 1;
-$closebutton-color: $dark-gray;
-$closebutton-color-hover: $black;
+$closebutton-color: $white;
+$closebutton-color-hover: $light-gray;
 
 // 15. Drilldown
 // -------------
@@ -307,10 +307,10 @@ $dropdown-sizes: (
 // -----------------
 
 $dropdownmenu-arrows: true;
-$dropdownmenu-arrow-color: $anchor-color;
+$dropdownmenu-arrow-color: $gray;
 $dropdownmenu-min-width: 200px;
 $dropdownmenu-background: $white;
-$dropdownmenu-border: 1px solid $medium-gray;
+$dropdownmenu-border: 1px solid $light-gray;
 
 // 18. Flex Video
 // --------------
