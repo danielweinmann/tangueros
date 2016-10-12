@@ -4,11 +4,17 @@
 .dark-gray
   color: $dark-gray
 
+.light-gray
+  color: $light-gray
+
 .bg-dark-ice
   background: $dark-ice
 
 .bg-light-gray
   background: $light-gray
+
+.bg-gray
+  background: $gray
 
 .border-bottom
   border-bottom: 1px solid $light-gray
@@ -28,6 +34,13 @@
 .big-margin-top
   margin-top: 2rem
 
+.small-margin-top
+  margin-top: 0.5rem
+
+.small-margin-top-small-only
+  @include breakpoint(small only)
+    margin-top: 0.5rem
+
 .no-margin-bottom
   margin-bottom: 0
 
@@ -36,6 +49,11 @@
 
 .button
   text-decoration: none
+
+.huge
+  font-size: 48px
+  @include breakpoint(medium up)
+    font-size: 48px
 
 .login-box
   padding: 0 10px

@@ -17,12 +17,12 @@ html lang="pt"
             .float-left
               = image_tag 'logo.png', class: 'logo'
             .float-left
-              h1.homenaje.gray.no-margin-bottom Tangueros
-              h4.dark-gray The social network for tango dancers
+              h1.homenaje.gray.no-margin-bottom.huge.small-margin-top-small-only Tangueros
+              h4.dark-gray.hide-for-small-only The social network for tango dancers
         .float-right.hide-for-small-only style="margin-top: 2.3rem;"= render 'layouts/user_menu'
-        .float-right style="margin-top: 2.8rem;" data-responsive-toggle="small-menu" data-hide-for="medium"
+        .float-right style="margin-top: 2.1rem;" data-responsive-toggle="small-menu" data-hide-for="medium"
           button.dark-gray(data-toggle)
-            = fa_icon 'bars'
+            = fa_icon 'bars', style: 'font-size: 24px; margin-right: 1rem;'
     #small-menu.bg-light-gray.hide-for-medium
       ul.menu= render 'layouts/user_menu'
     br
