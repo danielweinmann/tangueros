@@ -1,0 +1,25 @@
+= foundation_devise_error_messages!
+.row
+  .medium-6.medium-centered.columns
+    .login-box
+      .row
+        .large-12.columns
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .row
+              h2.text-center= t('.sign_in', :default => "Sign in")
+            br
+            .row
+              = link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, class: 'large button expand small-12 facebook'
+            = render 'shared/or'
+            .row.small-margin-top
+              = f.email_field :email, autofocus: true, class: "large-12 columns", placeholder: "Email"
+            .row
+              = f.password_field :password, autocomplete: "off", class: "large-12 columns", placeholder: "Password"
+            - if devise_mapping.rememberable?
+              .row
+                = f.check_box :remember_me
+                = f.label :remember_me
+            .row
+              = f.submit  t('.sign_in', :default => "Sign in"), class: "button expand large large-12 columns"
+      .row.margin-top
+        = render "devise/shared/links"

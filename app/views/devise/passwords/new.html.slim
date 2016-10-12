@@ -1,0 +1,15 @@
+= foundation_devise_error_messages!
+.row
+  .medium-6.medium-centered.columns
+    .login-box
+      .row
+        .large-12.columns
+          = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post}) do |f|
+            .row
+              h2.text-center= t('.forgot_your_password', :default => 'Forgot your password?')
+            br
+            .row
+              = f.email_field :email, autofocus: true, class: "large-12 columns", placeholder: "Email"
+            .row
+              = f.submit t('.send_me_reset_password_instructions', :default => "Send me reset password instructions"), class: "button expand large-12 large columns"
+        = render "devise/shared/links"

@@ -26,6 +26,7 @@ html lang="pt"
     #small-menu.bg-light-gray.hide-for-medium
       ul.menu= render 'layouts/user_menu'
     br
+    br
     .row.columns
       - for key, msg in flash
         - unless key == :timedout

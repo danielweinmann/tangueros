@@ -13,6 +13,11 @@
 .bg-light-gray
   background: $light-gray
 
+.button.facebook
+  background: $facebook
+  &:hover
+    background: $light-facebook
+
 .bg-gray
   background: $gray
 
@@ -60,18 +65,19 @@
   margin: 0 auto
   border: none
   background: $ice
-  .button
-    font-size: 1rem
-    @include breakpoint(medium up)
-      font-size: 1.25rem
-  h5
-    font-size: 19px
-    @include breakpoint(medium up)
-      font-size: 31px
-    margin-bottom: 1rem
 
 .logo
   width: 78px
   @include breakpoint(medium up)
     width: 110px
   margin-right: 2rem
+
+.separator
+  float: left
+  width: 45%
+  margin-top: 0.6rem
+  border-top: 1px solid $light-gray
+
+.separator-text
+  float: left
+  width: 10%
