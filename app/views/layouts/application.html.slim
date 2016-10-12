@@ -28,12 +28,5 @@ html lang="pt"
     br
     br
     .row.columns
-      - for key, msg in flash
-        - unless key == :timedout
-          - key = "success" if key == "notice"
-          - key = "alert" if ["failure", "error"].include?(key)
-          div(class="callout text-center #{key}" data-closable)
-            = msg
-            button(class="close-button" aria-label="Fechar aviso" type="button" data-close)
-              span aria-hidden="true" &times;
+      = render 'shared/flash' unless namespace == 'devise'
       = yield
