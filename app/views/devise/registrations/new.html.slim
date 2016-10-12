@@ -12,7 +12,7 @@
               = link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path, class: 'large button expand small-12 facebook'
             = render 'shared/or'
             .row.small-margin-top
-              = f.email_field :email, autofocus: true, class: "large-12 columns", placeholder: "Email"
+              = f.email_field :email, class: "large-12 columns", placeholder: "Email"
             .row
               = f.password_field :password, autocomplete: "off", class: "large-12 columns", placeholder: "Password"
             .row
