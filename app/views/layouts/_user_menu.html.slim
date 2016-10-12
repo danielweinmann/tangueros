@@ -1,0 +1,6 @@
+ul.menu.clearfix
+  - if current_user
+    li.float-right= link_to t('sign_out'), destroy_user_session_path, method: :delete
+  - else
+    li.float-right= link_to t('devise.shared.links.sign_in'), new_user_session_path, class: 'dark-gray'
+    li.float-right= link_to t('devise.shared.links.sign_up'), new_user_registration_path, class: 'dark-gray'

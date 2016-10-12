@@ -66,6 +66,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
+    font-awesome-rails (4.6.3.1)
+      railties (>= 3.2, < 5.1)
     foundation-rails (6.2.3.0)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
@@ -208,6 +210,7 @@ DEPENDENCIES
   devise
   devise-foundation-views
   devise-i18n
+  font-awesome-rails
   foundation-rails
   heroku-deflater (>= 0.4.1)
   high_voltage

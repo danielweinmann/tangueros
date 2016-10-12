@@ -10,23 +10,21 @@ html lang="pt"
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = csrf_meta_tag
   body[data-namespace="#{namespace}" data-controller="#{controller_name}" data-action="#{action_name}" data-locale="#{I18n.locale}"]
-    - unless controller_name == 'charts' && action_name == 'index' && !current_user
-      .bg-dark-ice.border-bottom.big-border-top
-        .row.columns
-          .float-left
-            = link_to root_path, class: 'no-decoration' do
-              .float-left
-                = image_tag 'logo.png', class: 'logo'
-              .float-left
-                h1.homenaje.gray.no-margin-bottom Tangueros
-                h4.dark-gray The social network for tango dancers
-          .float-right.margin-top
-            ul.menu
-              - if current_user
-                li= link_to t('sign_out'), destroy_user_session_path, method: :delete
-              - else
-                li.hide-for-small-only= link_to t('devise.shared.links.sign_up'), new_user_registration_path
-                li.hide-for-small-only= link_to t('devise.shared.links.sign_in'), new_user_session_path
+    .bg-dark-ice.border-bottom.big-border-top
+      .row.columns
+        .float-left
+          = link_to root_path, class: 'no-decoration' do
+            .float-left
+              = image_tag 'logo.png', class: 'logo'
+            .float-left
+              h1.homenaje.gray.no-margin-bottom Tangueros
+              h4.dark-gray The social network for tango dancers
+        .float-right.hide-for-small-only style="margin-top: 2.3rem;"= render 'layouts/user_menu'
+        .float-right style="margin-top: 2.8rem;" data-responsive-toggle="small-menu" data-hide-for="medium"
+          button.dark-gray(data-toggle)
+            = fa_icon 'bars'
+    #small-menu.bg-light-gray.hide-for-medium
+      ul.menu= render 'layouts/user_menu'
     br
     - for key, msg in flash
       - unless key == :timedout
@@ -36,4 +34,4 @@ html lang="pt"
           = msg
           button(class="close-button" aria-label="Fechar aviso" type="button" data-close)
             span aria-hidden="true" &times;
-    = yield
+    .row.columns= yield

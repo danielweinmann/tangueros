@@ -108,7 +108,7 @@ $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $header-sizes: (
   small: (
-    'h1': 24,
+    'h1': 32,
     'h2': 20,
     'h3': 19,
     'h4': 18,
@@ -245,7 +245,7 @@ $button-sizes: (
   tiny: 0.6rem,
   small: 0.75rem,
   default: 0.9rem,
-  large: 1.25rem,
+  large: 1.5rem,
 );
 $button-opacity-disabled: 0.25;
 
@@ -564,4 +564,3 @@ $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 1rem;
 $topbar-input-width: 200px;
 $topbar-unstack-breakpoint: medium;
-

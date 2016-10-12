@@ -1,0 +1,13 @@
+.text-center
+  br
+  br
+  h1
+    = 'Find out who looooves to dance tango with you'
+    br
+    .hide-for-large.margin-top
+    - (1..3).each do
+      = fa_icon 'heart'
+      = ' '
+  br
+  br
+  = link_to 'Sign me up!', new_user_registration_path, class: 'large button'

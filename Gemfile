@@ -18,6 +18,7 @@ gem 'devise-i18n'
 gem 'devise-foundation-views'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'high_voltage'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri
