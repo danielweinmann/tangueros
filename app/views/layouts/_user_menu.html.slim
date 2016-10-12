@@ -13,5 +13,7 @@
     h1.homenaje.gray.no-margin-bottom.huge Tangueros
     h2.dark-gray The social network for tango dancers
   ul.menu class=('vertical text-center' if reveal) style="margin-top: 0.75rem;"
-    li= link_to t('devise.shared.links.sign_up'), new_user_registration_path, class: 'dark-gray'
-    li= link_to t('devise.shared.links.sign_in'), new_user_session_path, class: 'dark-gray'
+    li
+      a.dark-gray(data-close="reveal-menu" href=new_user_registration_path)= t('devise.shared.links.sign_up')
+    li
+      a.dark-gray(data-close="reveal-menu" href=new_user_session_path)= t('devise.shared.links.sign_in')
