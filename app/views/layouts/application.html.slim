@@ -31,7 +31,7 @@ html lang="pt"
     br
     br
     .row.columns
-      = render 'shared/flash' unless namespace == 'devise'
+      = render 'shared/flash' unless namespace == 'devise' || (controller_name == 'users' && action_name == 'profile_image')
       = yield
     br
     br

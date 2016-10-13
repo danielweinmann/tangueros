@@ -1,0 +1,28 @@
+- content_for :title do
+  = "Upload a #{'new ' if @user.profile_image.present?}profile picture"
+.row
+  .medium-6.medium-centered.columns
+    = render 'shared/flash'
+    = render partial: 'shared/error_messages', locals: { resource: @user }
+    .login-box
+      .row
+        .large-12.columns.text-center
+          = form_for(@user, :as => 'user', :url => update_profile_image_users_path, :html => { :method => :put }) do |f|
+            .row.margin-bottom
+              h3.margin-bottom= content_for(:title)
+              - if @user.profile_image.present?
+                .picture.margin-bottom= image_tag @user.image_url
+              - else
+                h5.margin-bottom Almost there! You need to upload a picture for your profile so other dancers can recognize you \o/
+            .hide
+              = f.file_field :profile_image
+            .row.margin-top
+              = f.submit "Choose picture", class: "button expand large-12 large columns"
+javascript:
+  $("input:file").change(function (){
+    $('form#edit_user').submit();
+  });
+  $("input:submit").click(function (event) {
+    event.preventDefault();
+    $('input:file').trigger('click');
+  });
