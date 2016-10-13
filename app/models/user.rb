@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def image_url(thumb = false)
-    @image_url ||= ((profile_image.present? && profile_image.url((thumb ? :thumb : :medium))) || (facebook_image_url && "#{facebook_image_url}#{ '?type=large' unless thumb }"))
+    @image_url ||= ((profile_image.present? && profile_image.url((thumb ? :thumb : :medium))) || (facebook_image_url && "#{facebook_image_url}#{ '?type=large' unless thumb }")) || 'user.png'
   end
 
 end
