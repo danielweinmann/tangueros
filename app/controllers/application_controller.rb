@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
   after_action :verify_policy_scoped, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  before_action :check_profile, unless: -> {devise_controller? || action_name == 'profile_image'}
 
   def namespace
     names = self.class.to_s.split('::')
@@ -22,4 +23,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :email, :password, :password_confirmation])
   end
+
+  private
+
+  def check_profile
+    return unless current_user
+    unless current_user.profile_image.present? || current_user.facebook_image_url.present?
+      return redirect_to profile_image_users_path
+    end
+  end
+
 end

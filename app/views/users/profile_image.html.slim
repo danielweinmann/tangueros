@@ -13,7 +13,8 @@
               - if @user.profile_image.present?
                 .picture.margin-bottom= image_tag @user.image_url
               - else
-                h5.margin-bottom Almost there! You need to upload a picture for your profile so other dancers can recognize you \o/
+                .picture.margin-bottom= image_tag 'user.png'
+                h5.margin-bottom Almost there! You need to upload a picture to your profile so other dancers can recognize you \o/
             .hide
               = f.file_field :profile_image
             .row.margin-top
