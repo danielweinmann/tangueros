@@ -6,7 +6,7 @@
         = image_tag current_user.thumb_url, class: 'thumb'
         div class=(reveal ? "margin-top" : 'small-margin-left') style="display: #{reveal ? 'block' : 'inline'}"= current_user.full_name
       ul.menu class=('vertical text-center' if reveal)
-        li= link_to t('sign_out'), destroy_user_session_path, method: :delete, class: 'dark-gray'
+        li= link_to t('sign_out'), destroy_user_session_path, :method => :delete, :class => 'dark-gray', :'data-close' => 'reveal-menu'
 - else
   - if reveal
     = image_tag 'logo.png'
