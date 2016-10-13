@@ -1,24 +1,26 @@
-= foundation_devise_error_messages!
+- content_for :title do
+  = "Edit profile"
 .row
   .medium-6.medium-centered.columns
+    = render 'shared/flash'
+    = render partial: 'shared/error_messages', resource: resource
     .login-box
       .row
         .large-12.columns
           = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+            .row.margin-bottom
+              h3.text-center Edit profile
+            .row.small-margin-top
+              = f.text_field :first_name, autofocus: true, class: "large-12 columns", placeholder: "First name"
             .row
-              h5.text-center= t('.title', :resource => resource_class.model_name.human , :default => "Edit # resource_name.to_s.humanize ")
+              = f.text_field :last_name, class: "large-12 columns", placeholder: "Last name"
             .row
-              = f.email_field :email, autofocus: true, class: "large-12 columns", placeholder: "Email"
+              = f.email_field :email, class: "large-12 columns", placeholder: "Email"
             .row
-              = f.password_field :password, autocomplete: "off", class: "large-12 columns", placeholder: "Password", title: "leave blank if you don't want to change it"
+              = f.password_field :password, autocomplete: "off", class: "large-12 columns", placeholder: "Password (leave blank if you don't want to change it)", title: "Leave blank if you don't want to change it"
             .row
-              = f.password_field :password_confirmation, autocomplete: "off", class: "large-12 columns", placeholder: "Password Confirmation"
+              = f.password_field :password_confirmation, autocomplete: "off", class: "large-12 columns", placeholder: "Password confirmation"
             .row
-              = f.password_field :current_password, autocomplete: "off", class: "large-12 columns", placeholder: "Current Password", title: "we need your current password to confirm your changes"
+              = f.password_field :current_password, autocomplete: "off", class: "large-12 columns", placeholder: "Current password (only needed for password change)", title: "We need your current password to confirm your changes"
             .row
-              = f.submit t('.update', :default => "Update"), class: "button expand large-12 large-centered columns"
-        p
-          = t('.unhappy', :default => 'Unhappy')
-          | ? #{link_to t('.cancel_my_account', :default => "Cancel my account"), registration_path(resource_name), :data => { :confirm => t('.are_you_sure', :default => "Are you sure?") }, :method => :delete}.
-        = link_to t('.back', :default => 'Back'), :back
- 
+              = f.submit t('.update', :default => "Update"), class: "button expand large-12 large columns"
