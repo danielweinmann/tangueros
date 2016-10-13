@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       return render :profile_image
     end
     if @user.update(user_params)
-      redirect_to profile_image_users_path, notice: "Profile picture successfully uploaded."
+      redirect_to :root, notice: "Profile picture successfully uploaded."
     else
       render :profile_image
     end
