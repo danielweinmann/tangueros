@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   def profile_image
     @user = current_user
     authorize @user
+    # Had to add this line for turbolinks redirect to work.
+    response.headers['Turbolinks-Location'] = profile_image_users_path
   end
 
   def update_profile_image
@@ -29,6 +31,8 @@ class UsersController < ApplicationController
   def location
     @user = current_user
     authorize @user
+    # Had to add this line for turbolinks redirect to work.
+    response.headers['Turbolinks-Location'] = location_users_path
   end
 
   def update_location
