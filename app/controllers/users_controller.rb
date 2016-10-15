@@ -26,6 +26,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def location
+    @user = current_user
+    authorize @user
+  end
+
+  def update_location
+    @user = current_user
+    authorize @user
+    if !params[:user]
+      @user.errors.add(:latitude, "must be selected")
+      @user.errors.add(:longitude, "must be selected")
+      return render :location
+    end
+    if @user.update(user_params)
+      redirect_to :root, notice: "Your location was successfully defined!"
+    else
+      render :profile_image
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -34,6 +54,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:profile_image)
+      params.require(:user).permit(:profile_image, :latitude, :longitude)
     end
 end

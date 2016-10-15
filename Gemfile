@@ -23,6 +23,8 @@ gem 'high_voltage'
 gem 'font-awesome-rails'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'geocoder'
+gem 'geocomplete_rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri

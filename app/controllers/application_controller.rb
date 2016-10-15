@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
   after_action :verify_policy_scoped, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  before_action :check_profile, unless: -> {devise_controller? || action_name == 'profile_image' || action_name == 'update_profile_image' }
+  before_action :check_profile, unless: -> {devise_controller? || action_name == 'profile_image' || action_name == 'update_profile_image' || action_name == 'location' || action_name == 'update_location' }
 
   def namespace
     names = self.class.to_s.split('::')
@@ -30,6 +30,9 @@ class ApplicationController < ActionController::Base
     return unless current_user
     unless current_user.profile_image.present? || current_user.facebook_image_url.present?
       return redirect_to profile_image_users_path
+    end
+    unless current_user.latitude && current_user.longitude
+      return redirect_to location_users_path
     end
   end
 

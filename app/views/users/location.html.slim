@@ -1,0 +1,36 @@
+- content_for :title do
+  = "Let us know where you live"
+.row
+  .medium-8.medium-centered.columns
+    = render 'shared/flash'
+    = render partial: 'shared/error_messages', locals: { resource: @user }
+    .login-box
+      .row
+        .large-12.columns.text-center
+          = form_for(@user, :as => 'user', :url => update_location_users_path, :html => { :method => :put }) do |f|
+            .row.margin-bottom
+              h3.margin-bottom= content_for(:title)
+              - unless @user.latitude && @user.longitude
+                h5.margin-bottom Okay, last step before starting! Please tell us where you live so we can show you nearby tangueros.
+              input#geocomplete type="text" placeholder="Type in your address..." autofocus="true"
+              input#address type="hidden" value=@user.address
+              = f.hidden_field :latitude
+              = f.hidden_field :longitude
+              .margin-bottom
+                #map.map
+              h5.margin-bottom Don't worry, your privacy is safe with us. We'll never share your address, we promise!
+            .row.margin-top
+              = f.submit "This is where I live :D", class: "button expand large-12 large columns", disabled: true
+javascript:
+  $(function(){
+    $("#geocomplete").geocomplete({
+      map: "#map",
+      location: $('#address').val()
+    })
+    .bind("geocode:result", function(event, result){
+      var location = result.geometry.location;
+      $('#user_latitude').val(location.lat());
+      $('#user_longitude').val(location.lng());
+      $('[type=submit]').attr('disabled', false);
+    })
+  });

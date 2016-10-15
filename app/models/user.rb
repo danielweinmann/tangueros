@@ -5,6 +5,16 @@ class User < ApplicationRecord
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\Z/
   validates :first_name, presence: true
   validates :last_name, presence: true
+  reverse_geocoded_by :latitude, :longitude do |user, results|
+    if result = results.first
+      user.address = result.address
+      user.city = result.city
+      user.state = result.state_code
+      user.country = result.country_code
+    end
+  end
+
+  after_validation :reverse_geocode, if: ->(user){ user.latitude && user.longitude && (user.latitude_changed? || user.longitude_changed?) }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
