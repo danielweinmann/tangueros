@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   after_action :verify_policy_scoped, only: %i[]
 
   def index
+    if current_user && current_user.latitude && current_user.longitude
+      @user = User.visible.where("id <> #{current_user.id}").near([current_user.latitude, current_user.longitude], 41000, units: :km).limit(1).first
+    end
   end
 
   def profile_image

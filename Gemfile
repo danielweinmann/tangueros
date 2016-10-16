@@ -25,6 +25,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'geocoder'
 gem 'geocomplete_rails'
+gem 'countries'
 
 group :development, :test do
   gem 'byebug', platform: :mri

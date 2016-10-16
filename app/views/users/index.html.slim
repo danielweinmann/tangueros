@@ -1,14 +1,27 @@
 - content_for :title do
   = "The social network for tango dancers"
-.text-center
-  br
-  h1
-    = 'Find out who looooves to dance tango with you'
-    br
-    .hide-for-large.margin-top
-    - (1..3).each do
+- if current_user
+  .card.medium-4.medium-centered.text-center
+    .margin-bottom= image_tag @user.image_url
+    h4.gray.no-margin-bottom Do you looove dancing with
+    h1
+      = @user.full_name
+      span.gray ?
+    .button
+      | Yes 
       = fa_icon 'heart'
-      = ' '
-  br
-  br
-  = link_to 'Sign me up!', new_user_registration_path, class: 'large button'
+    .button.secondary Not yet
+    h5.gray.no-margin-bottom = "#{@user.city}, #{@user.country_name}"
+- else
+  .text-center
+    br
+    h1
+      = 'Find out who looooves to dance tango with you'
+      br
+      .hide-for-large.margin-top
+      - (1..3).each do
+        = fa_icon 'heart'
+        = ' '
+    br
+    br
+    = link_to 'Sign me up!', new_user_registration_path, class: 'large button'

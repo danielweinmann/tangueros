@@ -1,10 +1,11 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
-  has_attached_file :profile_image, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :profile_image, styles: { medium: "300x300#", thumb: "100x100#" }
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\Z/
   validates :first_name, presence: true
   validates :last_name, presence: true
+
   reverse_geocoded_by :latitude, :longitude do |user, results|
     if result = results.first
       user.address = result.address
@@ -15,6 +16,10 @@ class User < ApplicationRecord
   end
 
   after_validation :reverse_geocode, if: ->(user){ user.latitude && user.longitude && (user.latitude_changed? || user.longitude_changed?) }
+
+  def self.visible
+    where("((facebook_image_url IS NOT NULL AND facebook_image_url <> '') OR (profile_image_file_name IS NOT NULL AND profile_image_file_name <> '')) AND latitude IS NOT NULL AND longitude IS NOT NULL")
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -38,4 +43,7 @@ class User < ApplicationRecord
     @image_url ||= ((profile_image.present? && profile_image.url((thumb ? :thumb : :medium))) || (facebook_image_url && "#{facebook_image_url}#{ '?type=large' unless thumb }")) || 'user.png'
   end
 
+  def country_name
+    ISO3166::Country.new(self.country).name
+  end
 end
