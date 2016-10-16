@@ -1,17 +1,25 @@
 - content_for :title do
   = "The social network for tango dancers"
 - if current_user
-  .card.medium-4.medium-centered.text-center
-    .margin-bottom= image_tag @user.image_url
-    h4.gray.no-margin-bottom Do you looove dancing with
-    h1
-      = @user.full_name
-      span.gray ?
-    .button
-      | Yes 
-      = fa_icon 'heart'
-    .button.secondary Not yet
-    h5.gray.no-margin-bottom = "#{@user.city}, #{@user.country_name}"
+  - if @user
+    .card.medium-4.medium-centered.text-center
+      .margin-bottom= image_tag @user.image_url
+      h4.gray.no-margin-bottom Do you looove dancing with
+      h1
+        = @user.full_name
+        span.gray ?
+      .button
+        | Yes 
+        = fa_icon 'heart'
+      .button.secondary Not yet
+      h5.gray.no-margin-bottom = "#{@user.city}, #{@user.country_name}"
+  - else
+    .card.medium-6.medium-centered.text-center
+      h3 It seems like we ran out of tangueros!
+      h4.margin-bottom We have big dreams, but we're just starting 😊 so we need <strong>your help</strong> to spread the word.
+      .big-margin-top.big-margin-bottom
+        a.button.large.facebook.no-margin-bottom href="https://www.facebook.com/sharer/sharer.php?u=http://tangueros.club/" Share the love on Facebook
+      h4 You'll have our eternal gratitude and a much cooler experience with more tangueros on board! Thanks a lot ❤️
 - else
   .text-center
     br
