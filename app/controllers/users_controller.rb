@@ -6,7 +6,17 @@ class UsersController < ApplicationController
 
   def index
     if current_user && current_user.latitude && current_user.longitude
-      @user = User.visible.where("id <> #{current_user.id}").near([current_user.latitude, current_user.longitude], 41000, units: :km).limit(1).first
+      @user = User
+        .visible
+        .where("id <> #{current_user.id}")
+        .not_loved_by(current_user)
+        .not_dismissed_by(current_user)
+        .near([current_user.latitude, current_user.longitude], 41000, units: :km)
+        .limit(1).first
+      if @user
+        @love = Love.new(loved_user: @user)
+        @dismissal = Dismissal.new(dismissed_user: @user)
+      end
     end
   end
 

@@ -8,10 +8,12 @@
       h1
         = @user.full_name
         span.gray ?
-      .button
-        | Yes 
-        = fa_icon 'heart'
-      .button.secondary Not yet
+      = form_for @love, html: {style: 'display: inline;'} do |f|
+        = f.hidden_field :loved_user_id
+        = f.submit "Yes ♥", class: 'button'
+      = form_for @dismissal, html: {style: 'display: inline;'} do |f|
+        = f.hidden_field :dismissed_user_id
+        = f.submit "Not yet", class: 'button secondary'
       h5.gray.no-margin-bottom = "#{@user.city}, #{@user.country_name}"
   - else
     .card.medium-6.medium-centered.text-center

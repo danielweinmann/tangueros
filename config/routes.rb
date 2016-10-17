@@ -11,5 +11,7 @@ Rails.application.routes.draw do
       put :update_location
     end
   end
+  resources :loves, only: [:create]
+  resources :dismissals, only: [:create]
   root "users#index"
 end

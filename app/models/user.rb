@@ -5,6 +5,8 @@ class User < ApplicationRecord
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\Z/
   validates :first_name, presence: true
   validates :last_name, presence: true
+  has_many :loves
+  has_many :dismissals
 
   reverse_geocoded_by :latitude, :longitude do |user, results|
     if result = results.first
@@ -21,6 +23,14 @@ class User < ApplicationRecord
     where("((facebook_image_url IS NOT NULL AND facebook_image_url <> '') OR (profile_image_file_name IS NOT NULL AND profile_image_file_name <> '')) AND latitude IS NOT NULL AND longitude IS NOT NULL")
   end
 
+  def self.not_loved_by(user)
+    where("id NOT IN (SELECT loved_user_id FROM loves WHERE user_id = #{user.id})")
+  end
+
+  def self.not_dismissed_by(user)
+    where("id NOT IN (SELECT dismissed_user_id FROM dismissals WHERE user_id = #{user.id})")
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -29,6 +39,10 @@ class User < ApplicationRecord
       user.last_name = auth.info.last_name
       user.facebook_image_url = auth.info.image
     end
+  end
+
+  def matches
+    Match.where("user_id = #{self.id} OR matched_user_id = #{self.id}")
   end
 
   def full_name

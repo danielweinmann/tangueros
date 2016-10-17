@@ -1,0 +1,2 @@
+class LovePolicy < ApplicationPolicy
+end

@@ -1,0 +1,2 @@
+class DismissalPolicy < ApplicationPolicy
+end
