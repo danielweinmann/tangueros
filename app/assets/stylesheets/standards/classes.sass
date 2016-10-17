@@ -58,6 +58,10 @@
 .small-margin-left
   margin-left: 0.5rem
 
+.no-padding
+  padding-left: 0
+  padding-right: 0
+
 .no-decoration
   text-decoration: none
 
@@ -114,3 +118,11 @@
   background: $white
   padding: 2rem
   border: 1px solid $light-gray
+  border-top: none
+  @include breakpoint(large up)
+    border-top: 1px solid $light-gray
+
+.profile-image
+  img
+    @include breakpoint(small only)
+      max-width: 200px

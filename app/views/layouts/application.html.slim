@@ -31,10 +31,12 @@ html lang="pt"
       = render partial: "layouts/user_menu", locals: { reveal: true }
       button.close-button.gray data-close="reveal-menu" aria-label="Close menu" type="button"
         span(aria-hidden) &times;
-    br
-    br
-    .row.columns
+    .show-for-large
+      br
+      br
+    .row.columns.no-padding
       = render 'shared/flash' unless namespace == 'devise' || action_name == 'profile_image' || action_name == 'location'
       = yield
-    br
-    br
+    .show-for-large
+      br
+      br
