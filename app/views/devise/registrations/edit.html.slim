@@ -1,7 +1,7 @@
 - content_for :title do
   = "Edit profile"
 .row
-  .medium-6.medium-centered.columns
+  .large-6.large-centered.columns
     = render 'shared/flash'
     = render partial: 'shared/error_messages', resource: resource
     .login-box
@@ -11,7 +11,7 @@
             .row.margin-bottom
               h3.text-center Edit profile
             .row.small-margin-top
-              = f.text_field :first_name, autofocus: true, class: "large-12 columns", placeholder: "First name"
+              = f.text_field :first_name, class: "large-12 columns", placeholder: "First name"
             .row
               = f.text_field :last_name, class: "large-12 columns", placeholder: "Last name"
             .row

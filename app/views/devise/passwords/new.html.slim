@@ -1,7 +1,7 @@
 - content_for :title do
   = "Forgot your password?"
 .row
-  .medium-6.medium-centered.columns
+  .large-6.large-centered.columns
     = render 'shared/flash'
     = render partial: 'shared/error_messages', resource: resource
     .login-box
@@ -12,7 +12,7 @@
               h2.text-center= t('.forgot_your_password', :default => 'Forgot your password?')
             br
             .row
-              = f.email_field :email, autofocus: true, class: "large-12 columns", placeholder: "Email"
+              = f.email_field :email, class: "large-12 columns", placeholder: "Email"
             .row
-              = f.submit t('.send_me_reset_password_instructions', :default => "Send me reset password instructions"), class: "button expand large-12 large columns"
+              = f.submit "Send me instructions", class: "button expand large-12 large columns"
         = render "devise/shared/links"

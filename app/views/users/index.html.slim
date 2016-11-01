@@ -1,6 +1,8 @@
 - content_for :title do
   = "The social network for tango dancers"
 - if current_user
+  - content_for :full_screen
+    = true
   - if @user
     .card.large-4.large-centered.text-center
       .profile-image.margin-bottom= image_tag @user.image_url
@@ -24,7 +26,8 @@
       h4 You'll have our eternal gratitude and a much cooler experience with more tangueros on board! Thanks a lot ❤️
 - else
   .text-center
-    br
+    .show-for-medium
+      br
     h1
       = 'Find out who looooves to dance tango with you'
       br
@@ -33,5 +36,6 @@
         = fa_icon 'heart'
         = ' '
     br
-    br
+    .show-for-medium
+      br
     = link_to 'Sign me up!', new_user_registration_path, class: 'large button'

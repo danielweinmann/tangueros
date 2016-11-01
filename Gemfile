@@ -26,6 +26,7 @@ gem 'aws-sdk'
 gem 'geocoder'
 gem 'geocomplete_rails'
 gem 'countries'
+gem 'toastr-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri

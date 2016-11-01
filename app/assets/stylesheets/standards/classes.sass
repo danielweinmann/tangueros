@@ -1,3 +1,6 @@
+.text-center
+  text-align: center
+
 .gray
   color: $gray
 
@@ -42,9 +45,17 @@
 .small-margin-top
   margin-top: 0.5rem
 
-.small-margin-top-small-only
-  @include breakpoint(small only)
-    margin-top: 0.5rem
+.margin-top-small-down
+  @include breakpoint(small down)
+    margin-top: 1rem
+
+.big-margin-top-medium-down
+  @include breakpoint(medium down)
+    margin-top: 2rem
+
+.margin-bottom-small-down
+  @include breakpoint(small down)
+    margin-bottom: 1rem
 
 .margin-bottom
   margin-bottom: 1rem
@@ -68,11 +79,11 @@
 .button
   text-decoration: none
   &.large
-    @include breakpoint(small only)
-      font-size: 1.2rem
+    @include breakpoint(small down)
+      font-size: 0.8rem
 
 .huge
-  font-size: 48px
+  font-size: 36px
   @include breakpoint(medium up)
     font-size: 48px
 
@@ -91,8 +102,8 @@
 .separator
   float: left
   width: 45%
-  margin-top: 0.6rem
   border-top: 1px solid $light-gray
+  margin-top: 0.6rem
 
 .separator-text
   float: left
@@ -123,6 +134,6 @@
     border-top: 1px solid $light-gray
 
 .profile-image
-  img
-    @include breakpoint(small only)
-      max-width: 200px
+  @include breakpoint(small down)
+    img
+      width: 200px

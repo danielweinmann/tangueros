@@ -20,11 +20,11 @@ html lang="pt"
             .float-left
               = image_tag 'logo.png', class: 'logo'
             .float-left
-              h1.homenaje.gray.no-margin-bottom.huge.small-margin-top-small-only Tangueros
-              h4.dark-gray.hide-for-small-only The social network for tango dancers
-        .float-right.hide-for-small-only.margin-top
+              h1.homenaje.gray.no-margin-bottom.huge.margin-top-small-down Tangueros
+              h4.dark-gray.show-for-medium The social network for tango dancers
+        .float-right.show-for-large.margin-top
           = render "layouts/user_menu"
-        .float-right.hide-for-medium style="margin-top: 1.75rem;"
+        .float-right.hide-for-large style="margin-top: 1.75rem;"
           button.gray(data-open="reveal-menu")
             = fa_icon 'bars', style: 'font-size: 24px; margin-right: 1rem;'
     #reveal-menu.reveal.text-center(data-reveal)
@@ -34,7 +34,7 @@ html lang="pt"
     .show-for-large
       br
       br
-    .row.columns.no-padding
+    .row.columns class=(content_for?(:full_screen) ? "no-padding" : "big-margin-top-medium-down")
       = render 'shared/flash' unless namespace == 'devise' || action_name == 'profile_image' || action_name == 'location'
       = yield
     .show-for-large

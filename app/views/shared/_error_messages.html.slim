@@ -3,6 +3,7 @@
     h4 Ooops! Please review the following issues:
     ul
       - resource.errors.full_messages.each do |message|
-        li= message
+        li
+          h5= message
     button(class="close-button" aria-label="Close alert" type="button" data-close)
       span aria-hidden="true" &times;

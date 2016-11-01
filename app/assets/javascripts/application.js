@@ -15,6 +15,7 @@
 //= require foundation
 //= require turbolinks
 //= require geocomplete
+//= require toastr
 //= require_tree .
 
 $(function(){ 
