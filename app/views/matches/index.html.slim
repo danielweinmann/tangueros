@@ -1,0 +1,8 @@
+- content_for :title do
+  = "Your matches"
+- content_for :show_menu do
+  = true
+.text-center
+  - if @matches.empty?
+    h5 Whenever you say you looove to dance with someone and that person loves you back, there is a match. #{ link_to "Find tangueros", root_path } to discover who are your perfect matches!
+  - else

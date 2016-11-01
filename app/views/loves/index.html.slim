@@ -1,0 +1,8 @@
+- content_for :title do
+  = "Tangueros you love"
+- content_for :show_menu do
+  = true
+.text-center
+  - if @loves.empty?
+    h5 You haven't said you looove to dance with anyone yet. #{ link_to "Find tangueros", root_path } to discover who loves you back!
+  - else

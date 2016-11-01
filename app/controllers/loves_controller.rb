@@ -1,8 +1,11 @@
 class LovesController < ApplicationController
   before_action :authenticate_user!, except: %i[]
-  before_action :set_user, only: %i[]
-  after_action :verify_authorized, except: %i[]
-  after_action :verify_policy_scoped, only: %i[]
+  after_action :verify_authorized, except: %i[index]
+  after_action :verify_policy_scoped, only: %i[index]
+
+  def index
+    @loves = policy_scope(Love)
+  end
 
   def create
     @love = Love.new(love_params)

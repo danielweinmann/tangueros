@@ -1,7 +1,6 @@
 class ApplicationPolicy
 
   class Scope
-
     attr_reader :user, :scope
 
     def initialize(user, scope)
@@ -12,7 +11,6 @@ class ApplicationPolicy
     def resolve
       scope.where(user: user)
     end
-
   end
 
   attr_reader :user, :record

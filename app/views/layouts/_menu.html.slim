@@ -1,5 +1,5 @@
 ul.menu.text-center.clearfix
   = render partial: "layouts/menu_item", locals: { image: "users.png", title: "Find tangueros", path: root_path }
-  = render partial: "layouts/menu_item", locals: { image: "matches.png", title: "Your matches", path: "#" }
-  = render partial: "layouts/menu_item", locals: { image: "heart.png", title: "Tangueros you love", path: "#" }
+  = render partial: "layouts/menu_item", locals: { image: "matches.png", title: "Your matches", path: matches_path }
+  = render partial: "layouts/menu_item", locals: { image: "heart.png", title: "Tangueros you love", path: loves_path }
   = render partial: "layouts/menu_item", locals: { image: "world.png", title: "Notifications", path: "#" }

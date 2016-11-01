@@ -1,6 +1,5 @@
 class DismissalsController < ApplicationController
   before_action :authenticate_user!, except: %i[]
-  before_action :set_user, only: %i[]
   after_action :verify_authorized, except: %i[]
   after_action :verify_policy_scoped, only: %i[]
 

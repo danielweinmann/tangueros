@@ -4,8 +4,7 @@ html lang="pt"
     meta charset="utf-8"
     meta name="robots" content="index, follow"
     meta name="viewport" content="initial-scale=1.0, width=device-width"
-    - title = "#{"#{strip_tags(yield :title)} · " if content_for?(:title)} Tangueros"
-    title== title
+    title== "#{"#{strip_tags(yield :title)} · " if content_for?(:title)} Tangueros"
     link rel="shortcut icon" href==image_path('logo.png')
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_MAPS_API_KEY']}"
@@ -19,7 +18,7 @@ html lang="pt"
         .float-left
           = link_to root_path, class: 'no-decoration' do
             .float-left
-              = image_tag 'logo.png', class: "logo#{' small' if current_user}", alt: title, title: title
+              = image_tag 'logo.png', class: "logo#{' small' if current_user}", alt: "Tangueros", title: "The social network for tango dancers"
             - unless current_user
               .float-left
                 h1.homenaje.gray.no-margin-bottom.huge.margin-top-medium-down Tangueros
