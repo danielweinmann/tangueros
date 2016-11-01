@@ -11,7 +11,7 @@
             .row.margin-bottom
               h3.margin-bottom= content_for(:title)
               - if @user.profile_image.present?
-                .picture.margin-bottom= image_tag @user.image_url
+                .picture.margin-bottom.columns.small-4.small-centered.medium-12= image_tag @user.image_url
               - else
                 .picture.margin-bottom.columns.small-4.small-centered.medium-12= image_tag 'user.png'
                 h5.margin-bottom Almost there! You need to upload a picture to your profile so other tangueros can recognize you \o/

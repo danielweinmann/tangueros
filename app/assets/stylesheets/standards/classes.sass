@@ -79,8 +79,10 @@
 .button
   text-decoration: none
   &.large
-    @include breakpoint(small down)
+    @include breakpoint(small only)
       font-size: 0.8rem
+    @include breakpoint(320 down)
+      font-size: 0.6rem
 
 .huge
   font-size: 36px
@@ -130,10 +132,15 @@
   padding: 2rem
   border: 1px solid $light-gray
   border-top: none
+  @include breakpoint(320 down)
+    padding: 1rem
   @include breakpoint(large up)
     border-top: 1px solid $light-gray
 
 .profile-image
-  @include breakpoint(small down)
+  @include breakpoint(small only)
     img
       width: 200px
+  @include breakpoint(320 down)
+    img
+      width: 100px

@@ -12,10 +12,10 @@
         span.gray ?
       = form_for @love, html: {style: 'display: inline;'} do |f|
         = f.hidden_field :loved_user_id
-        = f.submit "Yes ♥", class: 'button'
+        = f.submit "Yes ♥", class: 'button large'
       = form_for @dismissal, html: {style: 'display: inline;'} do |f|
         = f.hidden_field :dismissed_user_id
-        = f.submit "Not yet", class: 'button secondary'
+        = f.submit "Not yet", class: 'button large secondary'
       h5.gray.no-margin-bottom = "#{@user.city}, #{@user.country_name}"
   - else
     .card.large-6.large-centered.text-center

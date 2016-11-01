@@ -9,7 +9,7 @@
         .large-12.columns
           = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
             .row
-              = link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path, class: 'large button expand small-12 facebook'
+              = link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path, class: 'large button expand columns facebook'
             = render 'shared/or'
             .row.small-margin-top
               = f.text_field :first_name, class: "large-12 columns", placeholder: "First name"
