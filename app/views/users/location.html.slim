@@ -14,9 +14,8 @@
                 h5.margin-bottom Okay, last step before starting! Please tell us where you live so we can show you nearby tangueros.
               input#geocomplete type="text" placeholder="Type in your address..."
               input#address type="hidden" value=@user.address
+              = f.submit "This is where I live :D", class: "button expand large columns", disabled: true
               h5.margin-bottom Don't worry, your privacy is safe with us. We'll never disclose your full address, only your <strong>city</strong> and your <strong>country</strong>.
-              .margin-top
-                = f.submit "This is where I live :D", class: "button expand large-12 large columns", disabled: true
               = f.hidden_field :latitude
               = f.hidden_field :longitude
               .margin-bottom
