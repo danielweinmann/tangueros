@@ -47,8 +47,8 @@
 .small-margin-top
   margin-top: 0.5rem
 
-.margin-top-small-down
-  @include breakpoint(small down)
+.margin-top-medium-down
+  @include breakpoint(medium down)
     margin-top: 1rem
 
 .big-margin-top-medium-down
@@ -77,6 +77,14 @@
   padding-left: 0
   padding-right: 0
 
+.padding-vertical
+  padding-top: 1rem
+  padding-bottom: 1rem
+
+.small-padding-vertical
+  padding-top: 0.5rem
+  padding-bottom: 0.5rem
+
 .no-decoration
   text-decoration: none
 
@@ -104,6 +112,10 @@
   @include breakpoint(medium up)
     width: 110px
   margin-right: 2rem
+  &.small
+    width: 32px
+    @include breakpoint(medium up)
+      width: 63px
 
 .separator
   float: left
@@ -119,8 +131,8 @@
   font-size: 1.2rem
 
 .thumb
-  width: 48px
-  height: 48px
+  width: 36px
+  height: 36px
   border-radius: 50%
 
 .map
@@ -148,3 +160,16 @@
   @include breakpoint(320 down)
     img
       width: 100px
+
+.menu-image
+  @include breakpoint(medium up)
+    img
+      width: 64px
+    margin-top: 0.5rem
+    margin-bottom: 0.5rem
+  &.selected
+    opacity: 0.5
+
+.menu-title
+  @include breakpoint(large up)
+    margin-bottom: 0.5rem

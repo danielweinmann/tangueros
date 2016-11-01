@@ -4,7 +4,8 @@ html lang="pt"
     meta charset="utf-8"
     meta name="robots" content="index, follow"
     meta name="viewport" content="initial-scale=1.0, width=device-width"
-    title== "#{"#{strip_tags(yield :title)} · " if content_for?(:title)} Tangueros"
+    - title = "#{"#{strip_tags(yield :title)} · " if content_for?(:title)} Tangueros"
+    title== title
     link rel="shortcut icon" href==image_path('logo.png')
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_MAPS_API_KEY']}"
@@ -18,19 +19,23 @@ html lang="pt"
         .float-left
           = link_to root_path, class: 'no-decoration' do
             .float-left
-              = image_tag 'logo.png', class: 'logo'
-            .float-left
-              h1.homenaje.gray.no-margin-bottom.huge.margin-top-small-down Tangueros
-              h4.dark-gray.show-for-medium The social network for tango dancers
-        .float-right.show-for-large.margin-top
+              = image_tag 'logo.png', class: "logo#{' small' if current_user}", alt: title, title: title
+            - unless current_user
+              .float-left
+                h1.homenaje.gray.no-margin-bottom.huge.margin-top-medium-down Tangueros
+                h4.dark-gray.show-for-large The social network for tango dancers
+        .float-right.show-for-medium
           = render "layouts/user_menu"
-        .float-right.hide-for-large style="margin-top: 1.75rem;"
+        .float-right.hide-for-medium style="margin-top: #{ current_user ? '0.15' : '1.75'}rem;"
           button.gray(data-open="reveal-menu")
-            = fa_icon 'bars', style: 'font-size: 24px; margin-right: 1rem;'
+            = fa_icon 'bars', style: "font-size: #{ current_user ? '16' : '24'}px; margin-right: #{ current_user ? '0.3' : '1'}rem;"
     #reveal-menu.reveal.text-center(data-reveal)
       = render partial: "layouts/user_menu", locals: { reveal: true }
       button.close-button.gray data-close="reveal-menu" aria-label="Close menu" type="button"
         span(aria-hidden) &times;
+    - if content_for?(:show_menu)
+      .bg-light-gray
+        .row.columns= render "layouts/menu"
     .show-for-large
       br
       br

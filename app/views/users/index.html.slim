@@ -1,5 +1,7 @@
 - content_for :title do
   = "The social network for tango dancers"
+- content_for :show_menu do
+  = true
 - if current_user
   - content_for :full_screen
     = true

@@ -4,7 +4,8 @@
     li
       a class=(reveal ? 'gray' : 'dark-gray') style=("font-size: 1.5rem" if reveal)
         = image_tag current_user.thumb_url, class: 'thumb'
-        div class=(reveal ? "margin-top" : 'small-margin-left') style="display: #{reveal ? 'block' : 'inline'}"= current_user.full_name
+        - unless reveal
+          span.small-margin-left= current_user.first_name
       ul.menu class=('vertical text-center' if reveal)
         li
           a.dark-gray(data-close="reveal-menu" href=edit_user_registration_path) Edit profile
