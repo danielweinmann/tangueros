@@ -8,6 +8,8 @@
           span.small-margin-left= current_user.first_name
       ul.menu class=('vertical text-center' if reveal)
         li
+          a.dark-gray(data-close="reveal-menu" href=user_path(current_user)) View profile
+        li
           a.dark-gray(data-close="reveal-menu" href=edit_user_registration_path) Edit profile
         li
           a.dark-gray(data-close="reveal-menu" href=profile_image_users_path) Profile picture

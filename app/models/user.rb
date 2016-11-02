@@ -41,6 +41,10 @@ class User < ApplicationRecord
     end
   end
 
+  def to_param
+    "#{self.id}-#{self.full_name.parameterize}"
+  end
+
   def matches
     Match.where("user_id = #{self.id} OR matched_user_id = #{self.id}")
   end

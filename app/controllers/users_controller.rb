@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
-  before_action :set_user, only: %i[]
+  before_action :set_user, only: %i[show]
   after_action :verify_authorized, except: %i[index]
   after_action :verify_policy_scoped, only: %i[]
 
@@ -18,6 +18,10 @@ class UsersController < ApplicationController
         @dismissal = Dismissal.new(dismissed_user: @user)
       end
     end
+  end
+
+  def show
+    authorize @user
   end
 
   def profile_image

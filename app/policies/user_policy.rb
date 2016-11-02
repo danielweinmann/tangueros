@@ -1,4 +1,8 @@
 class UserPolicy < ApplicationPolicy
+  def show?
+    user
+  end
+
   def profile_image?
     user
   end
