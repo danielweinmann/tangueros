@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   resources :loves, only: [:index, :create]
   resources :dismissals, only: [:create]
   resources :matches, only: [:index]
+  resources :notifications, only: [:index]
   root "users#index"
 end

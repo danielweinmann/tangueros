@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   has_many :loves
   has_many :dismissals
+  has_many :notifications
 
   reverse_geocoded_by :latitude, :longitude do |user, results|
     if result = results.first
@@ -55,15 +56,15 @@ class User < ApplicationRecord
     "#{self.id}-#{self.full_name.parameterize}"
   end
 
-  def does_love(user)
+  def does_love?(user)
     !Love.where("user_id = #{self.id} AND loved_user_id = #{user.id}").empty?
   end
 
-  def does_dismiss(user)
+  def does_dismiss?(user)
     !Dismiss.where("user_id = #{self.id} AND dismissed_user_id = #{user.id}").empty?
   end
 
-  def does_match(user)
+  def does_match?(user)
     !Match.where("(user_id = #{self.id} AND matched_user_id = #{user.id}) OR (user_id = #{user.id} AND matched_user_id = #{self.id})").empty?
   end
 

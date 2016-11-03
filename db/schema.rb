@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103034942) do
+ActiveRecord::Schema.define(version: 20161103144602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,28 @@ ActiveRecord::Schema.define(version: 20161103034942) do
     t.index ["matched_user_id"], name: "index_matches_on_matched_user_id", using: :btree
     t.index ["user_id", "matched_user_id"], name: "index_matches_on_user_id_and_matched_user_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_matches_on_user_id", using: :btree
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id",                            null: false
+    t.integer  "triggering_user_id"
+    t.integer  "love_id"
+    t.integer  "match_id"
+    t.text     "content",                            null: false
+    t.text     "email_subject",                      null: false
+    t.text     "email_content"
+    t.text     "push_subject"
+    t.text     "push_content"
+    t.text     "facebook_content"
+    t.boolean  "read",               default: false, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["love_id"], name: "index_notifications_on_love_id", using: :btree
+    t.index ["match_id"], name: "index_notifications_on_match_id", using: :btree
+    t.index ["read"], name: "index_notifications_on_read", using: :btree
+    t.index ["triggering_user_id"], name: "index_notifications_on_triggering_user_id", using: :btree
+    t.index ["user_id", "read"], name: "index_notifications_on_user_id_and_read", using: :btree
+    t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -87,4 +109,8 @@ ActiveRecord::Schema.define(version: 20161103034942) do
   add_foreign_key "loves", "users", column: "loved_user_id"
   add_foreign_key "matches", "users"
   add_foreign_key "matches", "users", column: "matched_user_id"
+  add_foreign_key "notifications", "loves", column: "love_id"
+  add_foreign_key "notifications", "matches"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "users", column: "triggering_user_id"
 end

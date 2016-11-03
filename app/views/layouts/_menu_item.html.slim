@@ -1,5 +1,7 @@
 li.columns.small-3
   a.dark-gray href=path
-    .menu-image class=('selected' if current_page?(path))
+    .menu-image.position-relative class=('selected' if current_page?(path))
       = image_tag image
+      - if defined?(count) && count > 0
+        .menu-count= count
     .menu-title.show-for-large= title

@@ -15,13 +15,16 @@
   color: $light-gray
 
 .bg-dark-ice
-  background: $dark-ice
+  background: $dark-ice !important
 
 .bg-light-gray
-  background: $light-gray
+  background: $light-gray !important
 
 .bg-gray
-  background: $gray
+  background: $gray !important
+
+.border-top
+  border-top: 1px solid $light-gray
 
 .border-bottom
   border-bottom: 1px solid $light-gray
@@ -166,6 +169,8 @@
     padding: 1rem
   @include breakpoint(large up)
     border-top: 1px solid $light-gray
+  &.notification
+    border-top: none
 
 .profile-image
   img
@@ -177,14 +182,38 @@
     img
       width: 100px
 
+.menu-title
+  @include breakpoint(large up)
+    margin-bottom: 0.5rem
+
 .menu-image
   @include breakpoint(medium up)
+    width: 72px
     img
       width: 64px
     margin-top: 0.5rem
     margin-bottom: 0.5rem
+    margin-left: auto
+    margin-right: auto
   &.selected
     opacity: 0.5
+
+.menu-count
+  position: absolute
+  background: $red
+  color: $white
+  top: -2px
+  right: -6px
+  border-radius: 0.1rem
+  padding: 0.2rem
+  font-size: 0.4rem
+  line-height: 0.4rem
+  @include breakpoint(medium up)
+    right: 0
+    border-radius: 0.2rem
+    padding: 0.4rem
+    font-size: 1rem
+    line-height: 1rem
 
 .icon
   img
@@ -192,11 +221,10 @@
     @include breakpoint(medium up)
       max-width: 64px
 
-.menu-title
-  @include breakpoint(large up)
-    margin-bottom: 0.5rem
-
 .circle
   border-radius: 50%
   img
     border-radius: 50%
+
+.position-relative
+  position: relative

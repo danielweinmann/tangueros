@@ -1,0 +1,11 @@
+- content_for :title do
+  = "Notifications"
+- content_for :show_menu do
+  = true
+.text-center
+  - if @notifications.empty?
+    h5 You don't have any notifications yet. #{ link_to "Find tangueros you looove to dance with", root_path } and we'll let you know when things happen!
+  - else
+    - content_for :full_screen
+      = true
+    .text-left.large-8.large-centered.border-top= render @notifications
