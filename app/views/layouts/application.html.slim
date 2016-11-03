@@ -12,7 +12,7 @@ html lang="pt"
       / Meta tags for pages that don't have specific meta tags
       meta name="description" content==strip_tags(content_for?(:description) ? yield(:description) : description)
       meta name="keywords" content="#{yield :title} Tangueros"
-      meta property="og:title" content==yield(:title)
+      meta property="og:title" content==(content_for?(:og_title) ? yield(:og_title) : yield(:title))
       meta property="og:type" content="website"
       meta property="og:url" content=(content_for?(:url) ? yield(:url) : request.url)
       meta property="og:image" content==(content_for?(:image_url) ? yield(:image_url) : "#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}")

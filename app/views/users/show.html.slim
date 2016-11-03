@@ -1,5 +1,7 @@
 - content_for :title do
   = @user.full_name
+- content_for :og_title do
+  = "#{@user.full_name} on Tangueros"
 - if @lovers_count > 0
   - content_for :description do
     = "#{pluralize @lovers_count, 'person'} #{@lovers_count == 1 ? 'loves' : 'love'} to dance with #{@user.first_name}! Find out who looooves to dance tango with you ♥ ♥ ♥"
