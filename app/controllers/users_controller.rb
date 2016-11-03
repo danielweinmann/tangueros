@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       return render :roles
     end
     if @user.update(user_params)
-      redirect_to :root, notice: "Your main role was successfully defined!"
+      redirect_to :root, notice: "Your role was successfully defined!"
     else
       render :roles
     end
