@@ -16,11 +16,6 @@
 .bg-light-gray
   background: $light-gray
 
-.button.facebook
-  background: $facebook
-  &:hover
-    background: scale-color($facebook, $lightness: -15%)
-
 .bg-gray
   background: $gray
 
@@ -98,6 +93,14 @@
       font-size: 0.8rem
     @include breakpoint(320 down)
       font-size: 0.6rem
+  &.tertiary
+    background: $gray
+    &:hover
+      background: scale-color($gray, $lightness: -15%)
+  &.facebook
+    background: $facebook
+    &:hover
+      background: scale-color($facebook, $lightness: -15%)
 
 .huge
   font-size: 36px

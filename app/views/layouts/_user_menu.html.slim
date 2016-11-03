@@ -15,6 +15,8 @@
           a.dark-gray(data-close="reveal-menu" href=profile_image_users_path) Profile picture
         li
           a.dark-gray(data-close="reveal-menu" href=location_users_path) Your location
+        li
+          a.dark-gray(data-close="reveal-menu" href=roles_users_path) Your role
         hr
         li
           = link_to t('sign_out'), destroy_user_session_path, :method => :delete, :class => 'dark-gray', :'data-close' => 'reveal-menu'

@@ -1,0 +1,28 @@
+- content_for :title do
+  = "What is your main role when dancing tango?"
+.row
+  .large-6.large-centered.columns
+    = render partial: 'shared/error_messages', locals: { resource: @user }
+    .login-box
+      .row
+        .large-12.columns.text-center
+          = form_for(@user, :as => 'user', :url => update_roles_users_path, :html => { :method => :put }) do |f|
+            = f.hidden_field :follower
+            = f.hidden_field :leader
+            .row.margin-bottom
+              h3.margin-bottom= content_for(:title)
+              h5 We'll show you tangueros based on your chosen role, so chose wisely 😉
+              h5 But anyway, you can always change it later!
+            .row.margin-top
+              .columns.small-12.medium-10.small-centered
+                .row
+                  a.button.large.columns.small-4 data-follower="true" data-leader="false" Follower
+                  a.button.large.columns.small-4.secondary data-follower="false" data-leader="true" Leader
+                  a.button.large.columns.small-4.tertiary data-follower="true" data-leader="true" Both
+javascript:
+  $('.button').click(function (event) {
+    event.preventDefault;
+    $('#user_follower').val($(event.target).data('follower'));
+    $('#user_leader').val($(event.target).data('leader'));
+    $('form').submit();
+  });

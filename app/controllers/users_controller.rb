@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       @user = User
         .visible
         .where("id <> #{current_user.id}")
+        .with_roles_prefered_by(current_user)
         .not_loved_by(current_user)
         .not_dismissed_by(current_user)
         .near([current_user.latitude, current_user.longitude], 41000, units: :km)
@@ -26,6 +27,27 @@ class UsersController < ApplicationController
     @matches_count = @user.matches.count
     @love = Love.new(loved_user: @user)
     @dismissal = Dismissal.new(dismissed_user: @user)
+  end
+
+  def roles
+    @user = current_user
+    authorize @user
+    # Had to add this line for turbolinks redirect to work.
+    response.headers['Turbolinks-Location'] = roles_users_path
+  end
+
+  def update_roles
+    @user = current_user
+    authorize @user
+    if !params[:user]
+      @user.errors.add(:role, "must be selected")
+      return render :roles
+    end
+    if @user.update(user_params)
+      redirect_to :root, notice: "Your main role was successfully defined!"
+    else
+      render :roles
+    end
   end
 
   def profile_image
@@ -67,7 +89,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to :root, notice: "Your location was successfully defined!"
     else
-      render :profile_image
+      render :location
     end
   end
 
@@ -79,6 +101,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:profile_image, :latitude, :longitude)
+      params.require(:user).permit(:profile_image, :latitude, :longitude, :follower, :leader)
     end
 end

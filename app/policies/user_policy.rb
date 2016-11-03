@@ -3,6 +3,14 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def roles?
+    user
+  end
+
+  def update_roles?
+    user
+  end
+
   def profile_image?
     user
   end

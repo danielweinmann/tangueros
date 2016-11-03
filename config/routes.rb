@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   }
   resources :users, only: [:show] do
     collection do
+      get :roles
+      put :update_roles
       get :profile_image
       put :update_profile_image
       get :location

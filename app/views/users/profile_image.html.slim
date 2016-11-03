@@ -1,8 +1,7 @@
 - content_for :title do
   = "Upload a #{'new ' if @user.profile_image.present?}profile picture"
 .row
-  .medium-6.medium-centered.columns
-    = render 'shared/flash'
+  .large-6.large-centered.columns
     = render partial: 'shared/error_messages', locals: { resource: @user }
     .login-box
       .row

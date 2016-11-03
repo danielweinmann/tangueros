@@ -1,8 +1,7 @@
 - content_for :title do
   = "Let us know where you live"
 .row
-  .medium-8.medium-centered.columns
-    = render 'shared/flash'
+  .large-8.large-centered.columns
     = render partial: 'shared/error_messages', locals: { resource: @user }
     .login-box
       .row

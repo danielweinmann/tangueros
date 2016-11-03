@@ -31,6 +31,16 @@ class User < ApplicationRecord
     where("id NOT IN (SELECT dismissed_user_id FROM dismissals WHERE user_id = #{user.id})")
   end
 
+  def self.with_roles_prefered_by(user)
+    if user.follower? && user.leader?
+      where("follower = true OR leader = true")
+    elsif user.follower?
+      where("leader = true")
+    elsif user.leader?
+      where("follower = true")
+    end
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

@@ -39,7 +39,7 @@ html lang="pt"
       br
       br
     .row.columns class=(content_for?(:full_screen) ? "no-padding" : "big-margin-top-medium-down")
-      = render 'shared/flash' unless namespace == 'devise' || action_name == 'profile_image' || action_name == 'location'
+      = render 'shared/flash'
       = yield
     .show-for-large
       br
