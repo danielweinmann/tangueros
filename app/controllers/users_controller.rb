@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: %i[index]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_user, only: %i[show]
   after_action :verify_authorized, except: %i[index]
   after_action :verify_policy_scoped, only: %i[]
@@ -22,6 +22,10 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
+    @lovers_count = @user.lovers.count
+    @matches_count = @user.matches.count
+    @love = Love.new(loved_user: @user)
+    @dismissal = Dismissal.new(dismissed_user: @user)
   end
 
   def profile_image

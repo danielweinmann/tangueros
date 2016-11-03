@@ -45,6 +45,22 @@ class User < ApplicationRecord
     "#{self.id}-#{self.full_name.parameterize}"
   end
 
+  def does_love(user)
+    !Love.where("user_id = #{self.id} AND loved_user_id = #{user.id}").empty?
+  end
+
+  def does_dismiss(user)
+    !Dismiss.where("user_id = #{self.id} AND dismissed_user_id = #{user.id}").empty?
+  end
+
+  def does_match(user)
+    !Match.where("(user_id = #{self.id} AND matched_user_id = #{user.id}) OR (user_id = #{user.id} AND matched_user_id = #{self.id})").empty?
+  end
+
+  def lovers
+    Love.where("loved_user_id = #{self.id}")
+  end
+
   def matches
     Match.where("user_id = #{self.id} OR matched_user_id = #{self.id}")
   end

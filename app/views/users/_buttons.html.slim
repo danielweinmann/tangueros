@@ -1,0 +1,6 @@
+= form_for @love, html: {style: 'display: inline;'} do |f|
+  = f.hidden_field :loved_user_id
+  = f.submit "Yes ♥", class: 'button large'
+= form_for @dismissal, html: {style: 'display: inline;'} do |f|
+  = f.hidden_field :dismissed_user_id
+  = f.submit "Not yet", class: 'button large secondary'

@@ -1,4 +1,27 @@
 - content_for :title do
   = @user.full_name
 .text-center
-  h1= @user.full_name
+  .profile-image.circle.margin-bottom= image_tag @user.image_url
+  h1.no-margin-bottom= @user.full_name
+  h4.gray.big-margin-bottom = "#{@user.city}, #{@user.country_name}"
+  .row.text-center.margin-bottom
+    .columns.small-8.medium-4.small-centered
+      .row
+        .columns.small-6.text-center
+          .icon.small-margin-bottom= image_tag "heart.png"
+          h6 #{pluralize @lovers_count, 'person'} #{@lovers_count == 1 ? 'loves' : 'love'}
+        .columns.small-6
+          .icon.small-margin-bottom= image_tag "matches.png"
+          h6 #{pluralize @matches_count, 'match'}
+  - if @user == current_user
+    .big-margin-top.big-margin-bottom
+      a.button.large.facebook.no-margin-bottom href="https://www.facebook.com/sharer/sharer.php?u=http://tangueros.club/#{user_path(@user)}" Share your profile!
+  - else
+    - if current_user && current_user.does_match(@user)
+      h4 You and #{@user.first_name} are a match! ♥
+    - elsif current_user && current_user.does_love(@user)
+      h4 You love to dance with #{@user.first_name}! ♥
+    - elsif current_user && current_user.does_dismiss(@user)
+    - else
+      h4.gray.margin-bottom Do you looove dancing with #{ @user.first_name }?
+      = render "buttons"
