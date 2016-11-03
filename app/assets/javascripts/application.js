@@ -19,8 +19,9 @@
 //= require_tree .
 
 $(function(){ 
-  $(document).foundation();
-  document.addEventListener("turbolinks:load", function() {
+  document.addEventListener("turbolinks:load", function(event) {
+    ga('set', 'location', event.data.url);
+    ga('send', 'pageview');
     $(document).foundation();
   });
 });
