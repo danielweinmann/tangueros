@@ -1,5 +1,13 @@
 - content_for :title do
   = @user.full_name
+- if @lovers_count > 0
+  - content_for :description do
+    = "#{pluralize @lovers_count, 'person'} #{@lovers_count == 1 ? 'loves' : 'love'} to dance with #{@user.first_name}."
+- else
+  - content_for :description do
+    = "Do you looove dancing with with #{@user.first_name}?"
+- content_for :image_url do
+  = @user.image_url
 .text-center
   .profile-image.circle.margin-bottom= image_tag @user.image_url
   h1.no-margin-bottom= @user.full_name

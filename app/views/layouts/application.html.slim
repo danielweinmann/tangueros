@@ -1,9 +1,27 @@
+- description = "The social network for tango dancers"
 doctype html
 html lang="pt"
   head
     meta charset="utf-8"
     meta name="robots" content="index, follow"
     meta name="viewport" content="initial-scale=1.0, width=device-width"
+    - if content_for? :meta_tags
+      / Page specific meta tags
+      = yield :meta_tags
+    - else
+      / Meta tags for pages that don't have specific meta tags
+      meta name="description" content==strip_tags(content_for?(:description) ? yield(:description) : description)
+      meta name="keywords" content="#{yield :title} Tangueros"
+      meta property="og:title" content==yield(:title)
+      meta property="og:type" content="website"
+      meta property="og:url" content=(content_for?(:url) ? yield(:url) : request.url)
+      meta property="og:image" content==(content_for?(:image_url) ? yield(:image_url) : "#{request.protocol}#{request.host_with_port}#{image_path("logo_facebook.png")}")
+      meta property="og:description" content==strip_tags(content_for?(:description) ? yield(:description) : description)
+      meta name="author" content=(content_for?(:author) ? yield(:author) : "tangueros.club")
+    / Metatags for every page
+    meta property="og:site_name" content="Tangueros"
+    meta property="fb:app_id" content=ENV["FACEBOOK_APP_ID"]
+    meta property="fb:admins" content=ENV["FACEBOOK_ADMINS"]
     title== "#{"#{strip_tags(yield :title)} · " if content_for?(:title)} Tangueros"
     link rel="shortcut icon" href==image_path('logo.png')
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -18,11 +36,11 @@ html lang="pt"
         .float-left
           = link_to root_path, class: 'no-decoration' do
             .float-left
-              = image_tag 'logo.png', class: "logo#{' small' if current_user}", alt: "Tangueros", title: "The social network for tango dancers"
+              = image_tag 'logo.png', class: "logo#{' small' if current_user}", alt: "Tangueros", title: description
             - unless current_user
               .float-left
                 h1.homenaje.gray.no-margin-bottom.huge.margin-top-medium-down Tangueros
-                h4.dark-gray.show-for-large The social network for tango dancers
+                h4.dark-gray.show-for-large= description
         .float-right.show-for-medium
           = render "layouts/user_menu"
         .float-right.hide-for-medium style="margin-top: #{ current_user ? '0.15' : '1.75'}rem;"
