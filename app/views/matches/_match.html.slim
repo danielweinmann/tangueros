@@ -1,0 +1,2 @@
+- user = (match.user == current_user ? match.matched_user : match.user)
+= render partial: "shared/user", locals: { user: user }

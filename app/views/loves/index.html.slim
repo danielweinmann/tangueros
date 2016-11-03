@@ -6,3 +6,7 @@
   - if @loves.empty?
     h5 You haven't said you looove to dance with anyone yet. #{ link_to "Find tangueros", root_path } to discover who loves you back!
   - else
+    - content_for :full_screen
+      = true
+    h1.margin-top-medium-down.margin-bottom Tangueros you love
+    .text-left-small-down= render @loves

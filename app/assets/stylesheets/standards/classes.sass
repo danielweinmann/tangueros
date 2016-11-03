@@ -1,6 +1,10 @@
 .text-center
   text-align: center
 
+.text-left-small-down
+  @include breakpoint(small down)
+    text-align: left
+
 .gray
   color: $gray
 
@@ -52,6 +56,10 @@
 
 .margin-bottom-small-down
   @include breakpoint(small down)
+    margin-bottom: 1rem
+
+.margin-bottom-medium-up
+  @include breakpoint(medium up)
     margin-bottom: 1rem
 
 .margin-bottom

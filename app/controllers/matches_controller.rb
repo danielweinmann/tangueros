@@ -4,6 +4,6 @@ class MatchesController < ApplicationController
   after_action :verify_policy_scoped, only: %i[index]
 
   def index
-    @matches = policy_scope(Match)
+    @matches = policy_scope(Match).order(:created_at)
   end
 end

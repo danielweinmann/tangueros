@@ -6,3 +6,7 @@
   - if @matches.empty?
     h5 Whenever you say you looove to dance with someone and that person reciprocates, there is a match. #{ link_to "Find tangueros", root_path } to discover who are your perfect matches!
   - else
+    - content_for :full_screen
+      = true
+    h1.margin-top-medium-down.margin-bottom Your matches
+    .text-left-small-down= render @matches
