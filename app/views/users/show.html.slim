@@ -2,10 +2,10 @@
   = @user.full_name
 - if @lovers_count > 0
   - content_for :description do
-    = "#{pluralize @lovers_count, 'person'} #{@lovers_count == 1 ? 'loves' : 'love'} to dance with #{@user.first_name}."
+    = "#{pluralize @lovers_count, 'person'} #{@lovers_count == 1 ? 'loves' : 'love'} to dance with #{@user.first_name}! Find out who looooves to dance tango with you ♥ ♥ ♥"
 - else
   - content_for :description do
-    = "Do you looove dancing with with #{@user.first_name}?"
+    = "Do you looove dancing with with #{@user.first_name}? Find out who looooves to dance tango with you ♥ ♥ ♥"
 - content_for :image_url do
   = @user.image_url
 .text-center
