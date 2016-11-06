@@ -22,6 +22,7 @@ html lang="pt"
     meta property="og:site_name" content="Tangueros"
     meta property="fb:app_id" content=ENV["FACEBOOK_APP_ID"]
     meta property="fb:admins" content=ENV["FACEBOOK_ADMINS"]
+    meta name="turbolinks-cache-control" content="no-preview"
     title== "#{"#{strip_tags(yield :title)} · " if content_for?(:title)} Tangueros"
     link rel="shortcut icon" href==image_path('logo.png')
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
