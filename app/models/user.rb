@@ -43,13 +43,18 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.facebook_image_url = auth.info.image
+      user.facebook_token = auth.credentials.token
     end
+    unless user.facebook_token.present?
+      user.update facebook_token: auth.credentials.token
+    end
+    user
   end
 
   def to_param

@@ -27,6 +27,8 @@ gem 'geocoder'
 gem 'geocomplete_rails'
 gem 'countries'
 gem 'toastr-rails'
+gem 'sidekiq'
+gem 'koala'
 
 group :development, :test do
   gem 'byebug', platform: :mri

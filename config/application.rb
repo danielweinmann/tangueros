@@ -32,6 +32,6 @@ module Tangueros
       url: ":s3_domain_url",
       path: "/:class/:attachment/:id_:basename.:style.:extension"
     }
-
+    config.active_job.queue_adapter = :sidekiq
   end
 end
