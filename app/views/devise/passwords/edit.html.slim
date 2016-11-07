@@ -7,12 +7,13 @@
           = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put}) do |f|
             = f.hidden_field :reset_password_token
             .row
-              h5.text-center= t('.change_your_password', :default => 'Change your password')
+              h2.text-center= t('.change_your_password', :default => 'Change your password')
+            br
             .row
               = f.password_field :password, autocomplete: "off", class: "large-12 columns", placeholder: "New Password"
             .row
               = f.password_field :password_confirmation, autocomplete: "off", class: "large-12 columns", placeholder: "Confirm New Password"
             .row
-              = f.submit t('.change_my_password', :default => 'Change my password'), class: "button expand large-12 large-centered columns"
+              = f.submit t('.change_my_password', :default => 'Change my password'), class: "button expand large large-12 large-centered columns"
         = render "devise/shared/links"
  

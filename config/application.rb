@@ -33,5 +33,8 @@ module Tangueros
       path: "/:class/:attachment/:id_:basename.:style.:extension"
     }
     config.active_job.queue_adapter = :sidekiq
+    if Rails.env.production?
+      # config.force_ssl = true
+    end
   end
 end

@@ -96,4 +96,9 @@ class User < ApplicationRecord
   def country_name
     ISO3166::Country.new(self.country).name
   end
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
+
 end
