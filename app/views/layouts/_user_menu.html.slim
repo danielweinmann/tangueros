@@ -18,11 +18,12 @@
         li
           a.dark-gray(data-close="reveal-menu" href=roles_users_path) Your role
         hr
+        = render "shared/about_menu"
+        hr
         li
-          = link_to t('sign_out'), destroy_user_session_path, :method => :delete, :class => 'dark-gray', :'data-close' => 'reveal-menu'
+          = link_to t('sign_out'), destroy_user_session_path, :method => :delete, :class => "dark-gray", :'data-close' => 'reveal-menu'
 - else
   - if reveal
-    = image_tag 'logo.png'
     h1.homenaje.gray.no-margin-bottom.huge Tangueros
     h2.gray The social network for tango dancers
   ul.menu class=('vertical text-center' if reveal) style="margin-top: #{ reveal ? '0.75' : '1.75' }rem;"
@@ -30,3 +31,6 @@
       a.dark-gray(data-close="reveal-menu" href=new_user_registration_path)= t('devise.shared.links.sign_up')
     li
       a.dark-gray(data-close="reveal-menu" href=new_user_session_path)= t('devise.shared.links.sign_in')
+    - if reveal
+      hr
+      = render "shared/about_menu"
