@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   resources :dismissals, only: [:create]
   resources :matches, only: [:index]
   resources :notifications, only: [:index]
-  post "/" => "facebook_canvas#index"
+  resources :facebook_canvas, only: [] do
+    collection do
+      post :index
+    end
+  end
   root "users#index"
 end
