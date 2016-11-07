@@ -6,5 +6,6 @@ class FacebookCanvasController < ApplicationController
   layout "facebook_canvas"
 
   def index
+    response.headers["X-Frame-Options"] = "GOFORIT"
   end
 end
