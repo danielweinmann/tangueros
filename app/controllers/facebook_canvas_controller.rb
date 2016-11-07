@@ -6,6 +6,7 @@ class FacebookCanvasController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
+    redirect_to :root
   end
 
   private
