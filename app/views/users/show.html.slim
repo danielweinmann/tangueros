@@ -25,7 +25,7 @@
           h6 #{pluralize @matches_count, 'match'}
   - if @user == current_user
     .big-margin-top.big-margin-bottom
-      a.button.large.facebook.no-margin-bottom href="https://www.facebook.com/sharer/sharer.php?u=http://tangueros.club#{user_path(@user)}" Share your profile!
+      a.button.large.facebook.no-margin-bottom href="https://www.facebook.com/sharer/sharer.php?u=https://tangueros.club#{user_path(@user)}" Share your profile!
   - else
     - if current_user && current_user.does_match?(@user)
       h4 You and #{@user.first_name} are a match! ♥
