@@ -26,7 +26,7 @@ html lang="en"
     title== "#{"#{strip_tags(yield :title)} · " if content_for?(:title)} Tangueros"
     link rel="shortcut icon" href==image_path('logo.png')
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_MAPS_API_KEY']}"
+    script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_MAPS_API_KEY']}"
     - if content_for? :external_js
       = yield :external_js
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
