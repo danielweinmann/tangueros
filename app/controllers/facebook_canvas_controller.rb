@@ -5,6 +5,5 @@ class FacebookCanvasController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @origin = request.headers['origin']
   end
 end

@@ -19,7 +19,6 @@ class UsersController < ApplicationController
         @dismissal = Dismissal.new(dismissed_user: @user)
       end
     end
-    @origin = request.headers['origin'].inspect
   end
 
   def show
