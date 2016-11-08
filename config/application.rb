@@ -35,7 +35,6 @@ module Tangueros
     config.active_job.queue_adapter = :sidekiq
     if Rails.env.production?
       config.force_ssl = true
-      config.ssl_options = { hsts: { subdomains: false } }
     end
   end
 end
