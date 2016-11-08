@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       put :update_profile_image
       get :location
       put :update_location
+      get :invite
     end
   end
   resources :loves, only: [:index, :create]

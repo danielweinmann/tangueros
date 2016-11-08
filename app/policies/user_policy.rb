@@ -26,4 +26,8 @@ class UserPolicy < ApplicationPolicy
   def update_location?
     user
   end
+
+  def invite?
+    user
+  end
 end

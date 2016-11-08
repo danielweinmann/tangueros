@@ -39,6 +39,22 @@ html lang="en"
 
       ga('create', '#{ENV['GOOGLE_ANALYTICS_ID']}', 'auto');
   body[data-namespace="#{namespace}" data-controller="#{controller_name}" data-action="#{action_name}" data-locale="#{I18n.locale}"]
+    javascript:
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '#{ENV['FACEBOOK_APP_ID']}',
+          xfbml      : true,
+          version    : 'v2.8'
+        });
+        // ADD ADDITIONAL FACEBOOK CODE HERE
+      };
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
     .bg-dark-ice.border-bottom.big-border-top
       .row.columns
         .float-left
