@@ -101,4 +101,10 @@ class User < ApplicationRecord
     devise_mailer.send(notification, self, *args).deliver_later
   end
 
+  def send_facebook_notification(content, href)
+    return unless self.provider == 'facebook' && self.uid.present?
+    graph = Koala::Facebook::API.new(Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET']).get_app_access_token)
+    graph.put_connections(self.uid, "notifications", template: content, href: href)
+  end
+
 end

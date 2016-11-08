@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :facebook_canvas, only: [] do
     collection do
       post :index
+      post :invite
     end
     member do
       post :show

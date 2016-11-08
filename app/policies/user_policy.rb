@@ -28,6 +28,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def invite?
-    user
+    true
   end
 end

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show invite]
   before_action :set_user, only: %i[show]
   after_action :verify_authorized, except: %i[index]
   after_action :verify_policy_scoped, only: %i[]
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
   end
 
   def invite
-    authorize current_user
+    authorize User
   end
 
   private
