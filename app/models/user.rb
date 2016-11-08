@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
   after_validation :reverse_geocode, if: ->(user){ user.latitude && user.longitude && (user.latitude_changed? || user.longitude_changed?) }
 
+  after_create do
+    SendFacebookInviteNotificationJob.set(wait: 30.minutes).perform_later(self)
+  end
+
   def self.visible
     where("((facebook_image_url IS NOT NULL AND facebook_image_url <> '') OR (profile_image_file_name IS NOT NULL AND profile_image_file_name <> '')) AND latitude IS NOT NULL AND longitude IS NOT NULL")
   end
