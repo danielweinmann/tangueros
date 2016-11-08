@@ -22,6 +22,7 @@ class User < ApplicationRecord
 
   after_create do
     SendFacebookInviteNotificationJob.set(wait: 30.minutes).perform_later(self)
+    UserMailer.welcome(self).deliver_later
   end
 
   def self.visible
@@ -99,6 +100,10 @@ class User < ApplicationRecord
 
   def country_name
     ISO3166::Country.new(self.country).name
+  end
+
+  def to_email
+    "\"#{self.full_name}\" <#{self.email}>"
   end
 
   def send_devise_notification(notification, *args)
