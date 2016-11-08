@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_x_frame_options
-    return unless request.headers['origin'] == "https://apps.facebook.com"
+    # return unless request.headers['origin'] == "https://apps.facebook.com"
     response.headers["X-Frame-Options"] = "GOFORIT"
   end
 end
