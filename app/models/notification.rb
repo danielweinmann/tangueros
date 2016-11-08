@@ -7,6 +7,10 @@ class Notification < ApplicationRecord
   belongs_to :love, optional: true
   belongs_to :match, optional: true
 
+  after_create do
+    SendNotificationJob.perform_later self
+  end
+
   def self.unread
     where("read = false")
   end
