@@ -1,0 +1,5 @@
+- content_for :title
+  = @notification.facebook_content
+.text-center
+  h1.big-margin-bottom= content_for(:title)
+  = link_to 'Sign in to find out', new_user_session_path, class: 'large button margin-top'

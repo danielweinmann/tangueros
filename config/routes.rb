@@ -25,6 +25,9 @@ Rails.application.routes.draw do
     collection do
       post :index
     end
+    member do
+      post :show
+    end
   end
   root "users#index"
 end
