@@ -8,7 +8,12 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :check_profile, unless: -> {devise_controller? || self.class == HighVoltage::PagesController || action_name == 'profile_image' || action_name == 'update_profile_image' || action_name == 'location' || action_name == 'update_location' || action_name == 'roles' || action_name == 'update_roles' }
   after_action :set_x_frame_options
-
+  force_ssl if: :in_production?
+  
+  def in_production?
+    Rails.env.production?
+  end
+    
   def namespace
     names = self.class.to_s.split('::')
     return "null" if names.length < 2
