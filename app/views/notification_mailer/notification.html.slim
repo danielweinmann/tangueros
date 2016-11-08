@@ -1,0 +1,6 @@
+p Hey #{ @user.first_name },
+p
+  - if @notification.email_content.present?
+    == @notification.email_content
+  - else
+    == @notification.content

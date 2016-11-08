@@ -13,7 +13,7 @@ class Love < ApplicationRecord
         love: self,
         content: "Someone loooves to dance with you! Want to find out who it is?",
         email_subject: "❤️ Someone loooves to dance with you ❤️",
-        email_content: "Want to find out who it is? <a href='https://tangueros.club'>Tell us</a> who you love to dance with and we'll let you know when there's a match 😀",
+        email_content: "Someone loooves to dance with you! Want to find out who it is? <a href='https://tangueros.club'>Tell us</a> who you love to dance with and we'll let you know when there's a match 😀",
         push_subject: "Someone loooves to dance with you!",
         push_content: "Want to find out who it is?",
         facebook_content: "Someone loooves to dance with you! Want to find out who it is?",

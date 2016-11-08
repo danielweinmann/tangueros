@@ -8,7 +8,8 @@ class Notification < ApplicationRecord
   belongs_to :match, optional: true
 
   after_create do
-    SendNotificationJob.perform_later self
+    SendNotificationJob.perform_later(self)
+    NotificationMailer.notification(self).deliver_later
   end
 
   def self.unread
