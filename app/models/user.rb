@@ -106,6 +106,10 @@ class User < ApplicationRecord
     "\"#{self.full_name}\" <#{self.email}>"
   end
 
+  def just_signed_up?
+    self.created_at > 1.hour.ago
+  end
+
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
   end

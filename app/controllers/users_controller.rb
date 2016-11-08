@@ -6,6 +6,10 @@ class UsersController < ApplicationController
 
   def index
     if current_user && current_user.latitude && current_user.longitude
+      if current_user.just_signed_up? && !session[:completed_registration]
+        @completed_registration = true
+        session[:completed_registration] = true
+      end
       @user = User
         .visible
         .where("id <> #{current_user.id}")

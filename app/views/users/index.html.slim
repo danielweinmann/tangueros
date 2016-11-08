@@ -5,6 +5,9 @@
 - content_for :description
   = "Tangueros is the social network for tango dancers. Get in touch with dancers from all over the world while at the same time you help sustain this culture we love so much 😀"
 - if current_user
+  - if @completed_registration
+    - content_for :facebook_pixel_event
+      = "CompleteRegistration"
   - content_for :show_menu do
     = true
   - content_for :full_screen

@@ -22,7 +22,6 @@ $(function(){
   document.addEventListener("turbolinks:load", function(event) {
     ga('set', 'location', event.data.url);
     ga('send', 'pageview');
-    fbq('track', 'PageView');
     $(document).foundation();
   });
 });

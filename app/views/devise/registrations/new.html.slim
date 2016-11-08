@@ -1,5 +1,7 @@
 - content_for :title do
   = "Sign up"
+- content_for :facebook_pixel_event
+  = "Lead"
 .row
   .large-6.large-centered.columns
     = render partial: 'shared/error_messages', resource: resource
