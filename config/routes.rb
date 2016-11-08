@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :dismissals, only: [:create]
   resources :matches, only: [:index]
   resources :notifications, only: [:index]
+  resources :settings, only: [:index]
   resources :facebook_canvas, only: [] do
     collection do
       post :index
