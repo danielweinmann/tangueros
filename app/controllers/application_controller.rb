@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   after_action :verify_policy_scoped, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :check_profile, unless: -> {devise_controller? || self.class == HighVoltage::PagesController || action_name == 'profile_image' || action_name == 'update_profile_image' || action_name == 'location' || action_name == 'update_location' || action_name == 'roles' || action_name == 'update_roles' }
+  after_action :set_x_frame_options
 
   def namespace
     names = self.class.to_s.split('::')
@@ -39,4 +40,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_x_frame_options
+    return unless request.headers['origin'] == "https://apps.facebook.com"
+    response.headers["X-Frame-Options"] = "GOFORIT"
+  end
 end
