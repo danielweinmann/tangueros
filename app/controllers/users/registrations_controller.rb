@@ -1,5 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  skip_before_action :verify_authenticity_token, if: -> { request.headers['origin'] == "https://apps.facebook.com" }
 
   protected
 

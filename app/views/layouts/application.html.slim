@@ -60,25 +60,27 @@ html lang="en"
     .bg-dark-ice.border-bottom.big-border-top
       .row.columns
         .float-left
-          = link_to root_path, class: 'no-decoration' do
+          = link_to root_path, class: 'no-decoration', target: (:_blank if controller_name == "facebook_canvas") do
             .float-left
               = image_tag 'logo.png', class: "logo#{' small' if current_user}", alt: "Tangueros", title: description
             - unless current_user
               .float-left
                 h1.homenaje.gray.no-margin-bottom.huge.margin-top-medium-down Tangueros
                 h4.dark-gray.show-for-large= description
-        .float-right.show-for-medium
-          = render "layouts/user_menu"
-        .float-right.hide-for-medium style="margin-top: #{ current_user ? '0.15' : '1.75'}rem;"
-          button.gray(data-open="reveal-menu")
-            = fa_icon 'bars', style: "font-size: #{ current_user ? '16' : '24'}px; margin-right: #{ current_user ? '0.3' : '1'}rem;"
-    #reveal-menu.reveal.text-center(data-reveal)
-      = render partial: "layouts/user_menu", locals: { reveal: true }
-      button.close-button.gray data-close="reveal-menu" aria-label="Close menu" type="button"
-        span(aria-hidden) &times;
-    - if content_for?(:show_menu)
-      .bg-light-gray
-        .row.columns= render "layouts/menu"
+        - unless controller_name == "facebook_canvas"
+          .float-right.show-for-medium
+            = render "layouts/user_menu"
+          .float-right.hide-for-medium style="margin-top: #{ current_user ? '0.15' : '1.75'}rem;"
+            button.gray(data-open="reveal-menu")
+              = fa_icon 'bars', style: "font-size: #{ current_user ? '16' : '24'}px; margin-right: #{ current_user ? '0.3' : '1'}rem;"
+    - unless controller_name == "facebook_canvas"
+      #reveal-menu.reveal.text-center(data-reveal)
+        = render partial: "layouts/user_menu", locals: { reveal: true }
+        button.close-button.gray data-close="reveal-menu" aria-label="Close menu" type="button"
+          span(aria-hidden) &times;
+      - if content_for?(:show_menu)
+        .bg-light-gray
+          .row.columns= render "layouts/menu"
     .show-for-large
       br
       br
