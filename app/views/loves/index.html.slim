@@ -10,4 +10,4 @@
       = true
     h1.margin-top-medium-down.no-margin-bottom Tangueros you love
     h5.big-margin-bottom You love to dance with #{pluralize @loves.count, 'tanguero'}
-    .text-left-small-down= render @loves
+    #users_equalizer.text-left-small-down(data-equalizer)= render @loves

@@ -10,4 +10,4 @@
       = true
     h1.margin-top-medium-down.no-margin-bottom Your matches
     h5.big-margin-bottom You have #{pluralize @matches.count, 'match'}
-    .text-left-small-down= render @matches
+    #users_equalizer.text-left-small-down(data-equalizer)= render @matches
