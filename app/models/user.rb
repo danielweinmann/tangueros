@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   after_create do
     SendFacebookInviteNotificationJob.set(wait: 30.minutes).perform_later(self)
-    UserMailer.welcome(self).deliver_later
+    UserMailer.welcome(self).deliver_later(wait: 2.seconds)
   end
 
   def self.visible
@@ -113,7 +113,7 @@ class User < ApplicationRecord
   end
 
   def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+    devise_mailer.send(notification, self, *args).deliver_later(wait: 2.seconds)
   end
 
   def send_facebook_notification(content, href)
