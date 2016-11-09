@@ -104,9 +104,13 @@
       font-size: 0.8rem
     @include breakpoint(320 down)
       font-size: 0.6rem
+  &.secondary
+    background: $dark-gray
+    &:hover, &:active
+      background: scale-color($dark-gray, $lightness: -15%)
   &.tertiary
     background: $gray
-    &:hover
+    &:hover, &:active
       background: scale-color($gray, $lightness: -15%)
   &.facebook
     background: $facebook
