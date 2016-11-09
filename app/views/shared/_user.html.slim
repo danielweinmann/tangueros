@@ -1,9 +1,9 @@
 = link_to user do
   .columns.medium-6.large-4
-    .card.margin-bottom
+    .card.margin-bottom(data-equalizer-watch)
       .row
         .columns.small-4.medium-12
-          .margin-bottom-medium-up(data-equalizer-watch)= image_tag user.image_url
+          .margin-bottom-medium-up= image_tag user.image_url
         .columns.small-8.medium-12
           h4.dark-gray.no-margin-bottom= user.full_name
           h5.gray= "#{user.city}, #{user.country_name}"
