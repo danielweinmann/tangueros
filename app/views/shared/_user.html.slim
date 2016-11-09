@@ -6,4 +6,4 @@
           .margin-bottom-medium-up= image_tag user.image_url
         .columns.small-8.medium-12
           h4.dark-gray.no-margin-bottom= user.full_name
-          h5.gray= "#{user.city}#{', ' if user.city}#{user.country_name}"
+          h5.gray= "#{user.city}#{', ' if user.city.present?}#{user.country_name}"

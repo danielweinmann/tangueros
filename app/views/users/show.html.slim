@@ -13,7 +13,7 @@
 .text-center
   .profile-image.circle.margin-bottom= image_tag @user.image_url
   h1.no-margin-bottom= @user.full_name
-  h4.gray.big-margin-bottom = "#{@user.city}#{', ' if @user.city}#{@user.country_name}"
+  h4.gray.big-margin-bottom = "#{@user.city}#{', ' if @user.city.present?}#{@user.country_name}"
   .row.text-center.margin-bottom
     .columns.small-8.medium-4.small-centered
       .row
