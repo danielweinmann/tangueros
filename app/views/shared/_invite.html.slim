@@ -1,0 +1,18 @@
+- content_for :title do
+  = "Invite your friends to Tangueros"
+- content_for :full_screen
+  = true
+.card.large-6.large-centered.text-center
+  h3= content_for(:title)
+  h4.margin-bottom We have big dreams, but we're just starting 😊 so we need <strong>your help</strong> to spread the word.
+  .big-margin-top.big-margin-bottom
+    a#invite-button.button.large.facebook.no-margin-bottom Invite your friends
+  h4 You'll have our eternal gratitude and a much cooler experience with more tangueros on board! Thanks a lot ❤️
+javascript:
+  $('#invite-button').click(function (event){
+    event.preventDefault();
+    FB.ui({method: 'apprequests',
+      message: "Look, a social network for tangueros!"
+    }, function(response){
+    });
+  });

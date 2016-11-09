@@ -1,0 +1,10 @@
+.show-for-medium.margin-bottom
+h1
+  = 'Find out who looooves to dance tango with you'
+  br
+  .hide-for-large.margin-top
+  - (1..3).each do
+    = fa_icon 'heart'
+    = ' '
+  .big-margin-bottom
+h3.gray.show-for-medium.big-margin-bottom= content_for(:description)
