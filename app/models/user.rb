@@ -71,7 +71,7 @@ class User < ApplicationRecord
   end
 
   def does_dismiss?(user)
-    !Dismiss.where("user_id = #{self.id} AND dismissed_user_id = #{user.id}").empty?
+    !Dismissal.where("user_id = #{self.id} AND dismissed_user_id = #{user.id}").empty?
   end
 
   def does_match?(user)
@@ -99,6 +99,7 @@ class User < ApplicationRecord
   end
 
   def country_name
+    return unless self.country
     ISO3166::Country.new(self.country).name
   end
 
