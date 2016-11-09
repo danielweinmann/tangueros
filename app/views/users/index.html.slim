@@ -20,7 +20,7 @@
         = @user.full_name
         span.gray ?
       = render "buttons"
-      h5.gray.no-margin-bottom = "#{@user.city}, #{@user.country_name}"
+      h5.gray.no-margin-bottom = "#{@user.city}#{', ' if @user.city.present?}#{@user.country_name}"
   - else
     .card.large-6.large-centered.text-center
       h3 No more tangueros for now...check back later!
