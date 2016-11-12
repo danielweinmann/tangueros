@@ -4,7 +4,7 @@ class LovesController < ApplicationController
   after_action :verify_policy_scoped, only: %i[index]
 
   def index
-    @loves = policy_scope(Love).visible.order(:created_at).page(params[:page])
+    @loves = policy_scope(Love).visible.order("created_at DESC").page(params[:page])
   end
 
   def create
