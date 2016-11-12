@@ -13,13 +13,17 @@
               .columns.small-2
                 h4 50km
               .columns.small-8
-                .slider(data-slider data-initial-start=current_user.radius data-start="50" data-end="22000" data-step="1")
+                .slider(data-slider data-initial-start=current_user.radius data-start="50" data-end="22000" data-step="10")
                   span.slider-handle(data-slider-handle role="slider" tabindex="1")
                   span.slider-fill(data-slider-fill)
                   = f.hidden_field :radius
               .columns.small-2
                 h3 style="margin-top: -0.2rem;" 🌍
             .row
-              h5.margin-bottom We'll show tangueros within the radius you select here.
+              h4.margin-bottom We'll show tangueros within <span id="radius-text" class="stat">#{current_user.radius}km</span> from #{ link_to 'your location', location_users_path }.
             .row.margin-top
               = f.submit "Update search distance", class: "button expand large-12 large columns"
+javascript:
+  $('.slider').on('moved.zf.slider', function(){
+    $('#radius-text').html($('#user_radius').val() + 'km');
+  });
