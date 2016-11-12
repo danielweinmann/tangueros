@@ -20,4 +20,8 @@ class Love < ApplicationRecord
       })
     end
   end
+
+  def self.visible
+    joins(:user).joins(:loved_user).where({users: {active: true}, loved_users_loves: {active: true}})
+  end
 end

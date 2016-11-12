@@ -26,7 +26,7 @@ class User < ApplicationRecord
   end
 
   def self.visible
-    where("((facebook_image_url IS NOT NULL AND facebook_image_url <> '') OR (profile_image_file_name IS NOT NULL AND profile_image_file_name <> '')) AND latitude IS NOT NULL AND longitude IS NOT NULL")
+    where(active: true).where("((facebook_image_url IS NOT NULL AND facebook_image_url <> '') OR (profile_image_file_name IS NOT NULL AND profile_image_file_name <> '')) AND latitude IS NOT NULL AND longitude IS NOT NULL")
   end
 
   def self.not_loved_by(user)

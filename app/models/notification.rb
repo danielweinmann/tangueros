@@ -15,4 +15,8 @@ class Notification < ApplicationRecord
   def self.unread
     where("read = false")
   end
+
+  def self.visible
+    joins(:triggering_user).where({users: {active: true}})
+  end
 end

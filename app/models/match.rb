@@ -18,4 +18,8 @@ class Match < ApplicationRecord
       })
     end
   end
+
+  def self.visible
+    joins(:user).joins(:matched_user).where({users: {active: true}, matched_users_matches: {active: true}})
+  end
 end
