@@ -13,7 +13,8 @@
           a.dark-gray(data-close="reveal-menu" href=invite_users_path) Invite your friends
         li
           a.dark-gray(data-close="reveal-menu" href=settings_path) Settings
-        = render "shared/about_menu"
+        li
+          a.dark-gray(data-close="reveal-menu" href=pages_path) More information
         hr
         li
           = link_to t('sign_out'), destroy_user_session_path, :method => :delete, :class => "dark-gray", :'data-close' => 'reveal-menu'

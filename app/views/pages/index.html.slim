@@ -1,0 +1,7 @@
+- content_for :title do
+  = "More information"
+- content_for :full_screen
+  = true
+.card.large-6.large-centered.text-center
+  h1= content_for(:title)
+  ul.menu.vertical= render "shared/about_menu"
