@@ -6,6 +6,7 @@ class Notification < ApplicationRecord
   belongs_to :triggering_user, class_name: "User", optional: true
   belongs_to :love, optional: true
   belongs_to :match, optional: true
+  paginates_per 10
 
   after_create do
     SendNotificationJob.set(wait: 2.seconds).perform_later(self)

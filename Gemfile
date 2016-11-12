@@ -29,6 +29,7 @@ gem 'countries'
 gem 'toastr-rails'
 gem 'sidekiq'
 gem 'koala'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platform: :mri

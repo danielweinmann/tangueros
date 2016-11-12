@@ -8,4 +8,6 @@
   - else
     - content_for :full_screen
       = true
+
     .text-left.large-8.large-centered.border-top= render @notifications
+    .row= paginate @notifications_relation

@@ -9,5 +9,6 @@
     - content_for :full_screen
       = true
     h1.margin-top-medium-down.no-margin-bottom Tangueros you love
-    h5.big-margin-bottom You love to dance with #{pluralize @loves.count, 'tanguero'}
-    #users_equalizer.text-left-small-down(data-equalizer)= render @loves
+    h5.big-margin-bottom You love to dance with #{pluralize @loves.total_count, 'tanguero'}
+    #users_equalizer.row.text-left-small-down(data-equalizer)= render @loves
+    .row= paginate @loves

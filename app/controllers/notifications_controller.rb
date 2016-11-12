@@ -4,7 +4,8 @@ class NotificationsController < ApplicationController
   after_action :verify_policy_scoped, only: %i[index]
 
   def index
-    @notifications = policy_scope(Notification).visible.order(created_at: :desc).to_a
+    @notifications_relation = policy_scope(Notification).visible.order(created_at: :desc).page(params[:page])
+    @notifications = @notifications_relation.to_a
     current_user.notifications.unread.update_all(read: true)
   end
 end

@@ -4,6 +4,6 @@ class MatchesController < ApplicationController
   after_action :verify_policy_scoped, only: %i[index]
 
   def index
-    @matches = policy_scope(Match).visible.order(:created_at)
+    @matches = policy_scope(Match).visible.order(:created_at).page(params[:page])
   end
 end

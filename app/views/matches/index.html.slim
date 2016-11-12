@@ -9,5 +9,6 @@
     - content_for :full_screen
       = true
     h1.margin-top-medium-down.no-margin-bottom Your matches
-    h5.big-margin-bottom You have #{pluralize @matches.count, 'match'}
-    #users_equalizer.text-left-small-down(data-equalizer)= render @matches
+    h5.big-margin-bottom You have #{pluralize @matches.total_count, 'match'}
+    #users_equalizer.row.text-left-small-down(data-equalizer)= render @matches
+    .row= paginate @matches
