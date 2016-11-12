@@ -1,0 +1,16 @@
+- content_for :title do
+  = "Deactivate your account"
+.row
+  .large-6.large-centered.columns
+    = render partial: 'shared/error_messages', locals: { resource: @user }
+    .login-box
+      .row
+        .large-12.columns.text-center
+          = form_for(@user, :as => 'user', :url => update_active_users_path, :html => { :method => :put }) do |f|
+            = f.hidden_field :active, value: false
+            .row.margin-bottom
+              h3.margin-bottom= content_for(:title)
+            .row
+              h5.margin-bottom Are you sure you want to deactivate your account? We'll be soooo sorry to see you go! 😭
+            .row.margin-top
+              = f.submit "Deactivate account", class: "button expand large-12 large columns"

@@ -118,6 +118,40 @@ class UsersController < ApplicationController
     end
   end
 
+  def deactivate
+    @user = current_user
+    authorize @user
+    # Had to add this line for turbolinks redirect to work.
+    response.headers['Turbolinks-Location'] = deactivate_users_path
+  end
+
+  def reactivate
+    @user = current_user
+    authorize @user
+    # Had to add this line for turbolinks redirect to work.
+    response.headers['Turbolinks-Location'] = reactivate_users_path
+  end
+
+  def update_active
+    @user = current_user
+    authorize @user
+    if !params[:user]
+      @user.errors.add(:active, "must be selected")
+      return render :deactivate
+    end
+    if @user.update(user_params)
+      if user_params[:active] == "true"
+        redirect_to :root, notice: "Your account have been reactivated! Welcome back 😀"
+      else
+        sign_out current_user
+        flash[:notice] = "Your account have been deactivated. We're sorry to see you go 😢"
+        render :index
+      end
+    else
+      render :deactivate
+    end
+  end
+
   def invite
     authorize User
   end
@@ -130,6 +164,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:profile_image, :latitude, :longitude, :follower, :leader, :radius)
+      params.require(:user).permit(:profile_image, :latitude, :longitude, :follower, :leader, :radius, :active)
     end
 end

@@ -35,6 +35,18 @@ class UserPolicy < ApplicationPolicy
     user
   end
 
+  def deactivate?
+    user
+  end
+
+  def reactivate?
+    user
+  end
+
+  def update_active?
+    user
+  end
+
   def invite?
     true
   end

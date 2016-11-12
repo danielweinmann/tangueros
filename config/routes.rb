@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       put :update_location
       get :radius
       put :update_radius
+      get :deactivate
+      get :reactivate
+      put :update_active
       get :invite
     end
   end

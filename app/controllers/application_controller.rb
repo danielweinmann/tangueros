@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
   after_action :verify_policy_scoped, unless: -> {devise_controller? || self.class == HighVoltage::PagesController}
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  before_action :check_profile, unless: -> {devise_controller? || self.class == HighVoltage::PagesController || action_name == 'profile_image' || action_name == 'update_profile_image' || action_name == 'location' || action_name == 'update_location' || action_name == 'roles' || action_name == 'update_roles' }
+  before_action :check_profile, unless: -> {devise_controller? || self.class == HighVoltage::PagesController || action_name == 'profile_image' || action_name == 'update_profile_image' || action_name == 'location' || action_name == 'update_location' || action_name == 'roles' || action_name == 'update_roles' || action_name == 'reactivate' || action_name == 'update_active' }
 
   def namespace
     names = self.class.to_s.split('::')
@@ -28,6 +28,9 @@ class ApplicationController < ActionController::Base
 
   def check_profile
     return unless current_user
+    unless current_user.active?
+      return redirect_to reactivate_users_path
+    end
     if current_user.follower.nil? || current_user.leader.nil?
       return redirect_to roles_users_path
     end

@@ -1,0 +1,16 @@
+- content_for :title do
+  = "Reactivate your account"
+.row
+  .large-6.large-centered.columns
+    = render partial: 'shared/error_messages', locals: { resource: @user }
+    .login-box
+      .row
+        .large-12.columns.text-center
+          = form_for(@user, :as => 'user', :url => update_active_users_path, :html => { :method => :put }) do |f|
+            = f.hidden_field :active, value: true
+            .row.margin-bottom
+              h3.margin-bottom= content_for(:title)
+            .row
+              h5.margin-bottom Your account has been deactivated. If you want to reactivate it we'll welcome you back with a big hug! 😍
+            .row.margin-top
+              = f.submit "Reactivate account", class: "button expand large-12 large columns"
