@@ -31,7 +31,6 @@
       h4 You and #{@user.first_name} are a match! ♥
     - elsif current_user && current_user.does_love?(@user)
       h4 You love to dance with #{@user.first_name}! ♥
-    - elsif current_user && current_user.does_dismiss?(@user)
     - else
       h4.gray.margin-bottom Do you looove dancing with #{ @user.first_name }?
       = render "buttons"
