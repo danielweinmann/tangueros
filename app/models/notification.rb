@@ -9,8 +9,10 @@ class Notification < ApplicationRecord
   paginates_per 10
 
   after_create do
-    SendNotificationJob.set(wait: 2.seconds).perform_later(self)
-    NotificationMailer.notification(self).deliver_later(wait: 2.seconds)
+    if self.user.active?
+      SendNotificationJob.set(wait: 2.seconds).perform_later(self)
+      NotificationMailer.notification(self).deliver_later(wait: 2.seconds)
+    end
   end
 
   def self.unread
