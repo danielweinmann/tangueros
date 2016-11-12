@@ -1,0 +1,25 @@
+- content_for :title do
+  = "Your search distance"
+.row
+  .large-6.large-centered.columns
+    = render partial: 'shared/error_messages', locals: { resource: @user }
+    .login-box
+      .row
+        .large-12.columns.text-center
+          = form_for(@user, :as => 'user', :url => update_radius_users_path, :html => { :method => :put }) do |f|
+            .row.margin-bottom
+              h3.margin-bottom= content_for(:title)
+            .row.text-center
+              .columns.small-2
+                h4 50km
+              .columns.small-8
+                .slider(data-slider data-initial-start=current_user.radius data-start="50" data-end="41000" data-step="1")
+                  span.slider-handle(data-slider-handle role="slider" tabindex="1")
+                  span.slider-fill(data-slider-fill)
+                  = f.hidden_field :radius
+              .columns.small-2
+                h3 style="margin-top: -0.2rem;" 🌍
+            .row
+              h5.margin-bottom We'll show tangueros within the radius you select here.
+            .row.margin-top
+              = f.submit "Update search distance", class: "button expand large-12 large columns"

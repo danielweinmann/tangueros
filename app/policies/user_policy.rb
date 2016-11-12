@@ -27,6 +27,14 @@ class UserPolicy < ApplicationPolicy
     user
   end
 
+  def radius?
+    user
+  end
+
+  def update_radius?
+    user
+  end
+
   def invite?
     true
   end

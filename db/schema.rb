@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106220106) do
+ActiveRecord::Schema.define(version: 20161112000402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20161106220106) do
     t.boolean  "leader"
     t.boolean  "admin",                      default: false, null: false
     t.string   "facebook_token"
+    t.integer  "radius",                     default: 41000, null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["follower"], name: "index_users_on_follower", using: :btree
     t.index ["leader"], name: "index_users_on_leader", using: :btree

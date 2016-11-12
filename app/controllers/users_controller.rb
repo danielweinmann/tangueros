@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         .with_roles_prefered_by(current_user)
         .not_loved_by(current_user)
         .not_dismissed_by(current_user)
-        .near([current_user.latitude, current_user.longitude], 41000, units: :km)
+        .near([current_user.latitude, current_user.longitude], current_user.radius, units: :km)
         .limit(1).first
       if @user
         @love = Love.new(loved_user: @user)
@@ -97,6 +97,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def radius
+    @user = current_user
+    authorize @user
+    # Had to add this line for turbolinks redirect to work.
+    response.headers['Turbolinks-Location'] = radius_users_path
+  end
+
+  def update_radius
+    @user = current_user
+    authorize @user
+    if !params[:user]
+      @user.errors.add(:radius, "must be selected")
+      return render :radius
+    end
+    if @user.update(user_params)
+      redirect_to :root, notice: "Your search distance was successfully defined!"
+    else
+      render :radius
+    end
+  end
+
   def invite
     authorize User
   end
@@ -109,6 +130,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:profile_image, :latitude, :longitude, :follower, :leader)
+      params.require(:user).permit(:profile_image, :latitude, :longitude, :follower, :leader, :radius)
     end
 end

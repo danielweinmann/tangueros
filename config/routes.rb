@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       put :update_profile_image
       get :location
       put :update_location
+      get :radius
+      put :update_radius
       get :invite
     end
   end
