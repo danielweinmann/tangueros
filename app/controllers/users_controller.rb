@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
+    return 
     @lovers_count = @user.lovers.count
     @matches_count = @user.matches.count
     @love = Love.new(loved_user: @user)
@@ -160,6 +161,7 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      raise ActiveRecord::RecordNotFound unless @user.active?
     end
 
     # Only allow a trusted parameter "white list" through.
