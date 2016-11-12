@@ -21,6 +21,8 @@
         span.gray ?
       = render "buttons"
       h5.gray.no-margin-bottom = "#{@user.city}#{', ' if @user.city.present?}#{@user.country_name}"
+    .columns.small-8.small-centered.margin-top.text-center
+      h5 Too many people from far away? #{ link_to "Update your search distance", radius_users_path }.
   - else
     .card.large-6.large-centered.text-center
       h3 No more tangueros for now...check back later!
@@ -28,8 +30,9 @@
       .big-margin-top.big-margin-bottom
         a.button.large.facebook.no-margin-bottom href="https://www.facebook.com/sharer/sharer.php?u=https://tangueros.club/" Tell everybody about Tangueros!
       h4 You'll have our eternal gratitude and a much cooler experience with more tangueros on board! Thanks a lot ❤️
-  .columns.small-8.small-centered.margin-top.text-center
-    h5 Too many people from far away? #{ link_to "Update your search distance", radius_users_path }.
+    - if current_user.radius < 22000
+      .columns.small-8.small-centered.margin-top.text-center
+        h5 Want to see more people? #{ link_to "Update your search distance", radius_users_path }.
 - else
   .text-center
     = render "shared/welcome"
