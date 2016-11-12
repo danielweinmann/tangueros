@@ -27,7 +27,6 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
-    return 
     @lovers_count = @user.lovers.count
     @matches_count = @user.matches.count
     @love = Love.new(loved_user: @user)
