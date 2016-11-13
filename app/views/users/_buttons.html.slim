@@ -1,8 +1,8 @@
 = form_for @love, html: {style: 'display: inline;'} do |f|
   = f.hidden_field :loved_user_id
-  input.show-for-large.button.large(type="submit" name="commit" value="Yes ♥" data-disable-with="Yes ♥" data-tooltip data-click-open="false" data-disable-hover="false" tabindex="1" title="#{@love.loved_user.first_name} will not know unless you are a match 😉")
-  input.hide-for-large.button.large type="submit" name="commit" value="Yes ♥" data-disable-with="Yes ♥"
+  input.show-for-large.button.large.pointer-cursor(type="submit" name="commit" value="Yes ♥" data-disable-with="Yes ♥" data-tooltip data-click-open="false" data-disable-hover="false" tabindex="1" title="#{@love.loved_user.first_name} will not know unless you are a match 😉")
+  input.hide-for-large.button.large.pointer-cursor type="submit" name="commit" value="Yes ♥" data-disable-with="Yes ♥"
 = form_for @dismissal, html: {style: 'display: inline;'} do |f|
   = f.hidden_field :dismissed_user_id
-  input.show-for-large.button.large.secondary(type="submit" name="commit" value=" Skip " data-disable-with=" Skip " data-tooltip data-click-open="false" data-disable-hover="false" tabindex="2" title="Don't worry, no one will ever know! 😅")
-  input.hide-for-large.button.large.secondary type="submit" name="commit" value=" Skip " data-disable-with=" Skip "
+  input.show-for-large.button.large.secondary.pointer-cursor(type="submit" name="commit" value=" Skip " data-disable-with=" Skip " data-tooltip data-click-open="false" data-disable-hover="false" tabindex="2" title="Don't worry, no one will ever know! 😅")
+  input.hide-for-large.button.large.secondary.pointer-cursor type="submit" name="commit" value=" Skip " data-disable-with=" Skip "
