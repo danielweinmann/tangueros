@@ -18,7 +18,7 @@
         .profile-image.margin-bottom= image_tag @user.image_url
         h4.gray.no-margin-bottom Do you <span class='dark-gray'>already looove</span> dancing with
         h2.dark-gray
-          = truncate @user.full_name, length: 28, separator: ' ', omission: ''
+          = truncate @user.full_name, length: 24, separator: ' ', omission: ''
           span.gray ?
       = render "buttons"
       = link_to @user do
