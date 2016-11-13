@@ -14,13 +14,15 @@
     = true
   - if @user
     .card.large-5.large-centered.text-center
-      .profile-image.margin-bottom= image_tag @user.image_url
-      h4.gray.no-margin-bottom Do you <span class='dark-gray'>already looove</span> dancing with
-      h2.dark-gray
-        = truncate @user.full_name, length: 28, separator: ' ', omission: ''
-        span.gray ?
+      = link_to @user do
+        .profile-image.margin-bottom= image_tag @user.image_url
+        h4.gray.no-margin-bottom Do you <span class='dark-gray'>already looove</span> dancing with
+        h2.dark-gray
+          = truncate @user.full_name, length: 28, separator: ' ', omission: ''
+          span.gray ?
       = render "buttons"
-      h5.gray.no-margin-bottom = "#{@user.city}#{', ' if @user.city.present?}#{@user.country_name}"
+      = link_to @user do
+        h5.gray.no-margin-bottom = "#{@user.city}#{', ' if @user.city.present?}#{@user.country_name}"
     .columns.small-8.small-centered.margin-top.text-center
       h5 Too many people from far away? #{ link_to "Update your search distance", radius_users_path }.
   - else
