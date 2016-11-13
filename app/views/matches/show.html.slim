@@ -8,7 +8,8 @@
   .profile-image.small.circle.margin-top-medium-down.margin-bottom= image_tag @user.image_url
   h2.small-11.small-centered.big-margin-bottom= content_for(:title)
   .large-8.large-centered
-    .text-left.big-margin-bottom.border-top= render @messages
+    - unless @messages.empty?
+      .text-left.big-margin-bottom.border-top= render @messages
     .show-for-large
       = form_for @message, html: {style: 'display: inline;'} do |f|
         = f.hidden_field :to_user_id
