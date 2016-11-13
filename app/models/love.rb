@@ -1,6 +1,11 @@
 class Love < ApplicationRecord
   belongs_to :user
   belongs_to :loved_user, class_name: "User"
+  has_many :notifications, dependent: :destroy
+
+  before_destroy do
+    Match.where("(user_id = #{self.user_id} AND matched_user_id = #{self.loved_user_id}) OR (user_id = #{self.loved_user_id} AND matched_user_id = #{self.user_id})").destroy_all
+  end
 
   after_create do
     if self.loved_user.does_love?(self.user)

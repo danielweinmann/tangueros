@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       get :invite
     end
   end
-  resources :loves, only: [:index, :create]
+  resources :loves, only: [:index, :create, :destroy]
   resources :dismissals, only: [:create]
   resources :matches, only: [:index]
   resources :notifications, only: [:index]

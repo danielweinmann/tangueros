@@ -1,9 +1,14 @@
-= link_to user do
+div
   .columns.medium-6.large-4
-    .card.margin-bottom(data-equalizer-watch)
+    .card.position-relative.margin-bottom(data-equalizer-watch)
       .row
         .columns.small-4.medium-12
-          .margin-bottom-medium-up= image_tag user.image_url
-        .columns.small-8.medium-12
-          h4.dark-gray.no-margin-bottom= user.full_name
-          h5.gray= "#{user.city}#{', ' if user.city.present?}#{user.country_name}"
+          = link_to user do
+            .margin-bottom-medium-up= image_tag user.image_url
+        .columns.small-7.medium-12
+          = link_to user do
+            h4.dark-gray.no-margin-bottom= user.full_name
+            h5.gray= "#{user.city}#{', ' if user.city.present?}#{user.country_name}"
+      - if defined?(destroy) && destroy
+        = link_to destroy, class: 'bottom-right padding gray', data: { confirm: destroy_confirm }, method: :delete do
+          = fa_icon 'trash'

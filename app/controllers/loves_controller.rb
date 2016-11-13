@@ -1,5 +1,6 @@
 class LovesController < ApplicationController
   before_action :authenticate_user!, except: %i[]
+  before_action :set_love, only: %i[destroy]
   after_action :verify_authorized, except: %i[index]
   after_action :verify_policy_scoped, only: %i[index]
 
@@ -20,7 +21,17 @@ class LovesController < ApplicationController
     end
   end
 
+  def destroy
+    authorize @love
+    @love.destroy
+    redirect_to loves_url, notice: "Successfully unloved #{@love.loved_user.full_name}!"
+  end
+
   private
+
+  def set_love
+    @love = Love.find(params[:id])
+  end
 
   def love_params
     params.require(:love).permit(:loved_user_id)

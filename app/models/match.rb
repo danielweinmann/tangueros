@@ -1,6 +1,7 @@
 class Match < ApplicationRecord
   belongs_to :user
   belongs_to :matched_user, class_name: "User"
+  has_many :notifications, dependent: :destroy
 
   after_create do
     [self.user, self.matched_user].each do |user|
@@ -11,7 +12,7 @@ class Match < ApplicationRecord
         match: self,
         content: "<b>#{triggering_user.full_name}</b> loooves to dance with you! You are a match 🙌",
         email_subject: "You have a match on Tangueros 🙌",
-        email_content: "You have a match on Tangueros! Want to find out who it is? <a href='https://tangueros.club'>Click here</a> and we'll stop the suspense 😀",
+        email_content: "You have a match on Tangueros! Want to find out who it is? <a href='https://tangueros.club'>Click here</a> and we'll end the suspense 😀",
         push_subject: "You have a match",
         push_content: "Find out who it is!",
         facebook_content: "You have a match on Tangueros! Find out who it is!",
