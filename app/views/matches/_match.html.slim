@@ -1,2 +1,1 @@
-- user = (match.user == current_user ? match.matched_user : match.user)
-= render partial: "shared/user", locals: { user: user }
+= render partial: "shared/user", locals: { user: match.other_user(current_user), path: match_path(match) }

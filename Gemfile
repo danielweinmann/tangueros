@@ -30,6 +30,7 @@ gem 'toastr-rails'
 gem 'sidekiq'
 gem 'koala'
 gem 'kaminari'
+gem 'autosize-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri

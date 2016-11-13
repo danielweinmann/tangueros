@@ -1,0 +1,41 @@
+- content_for :title do
+  = "You and #{@user.full_name} are a match! ♥"
+- content_for :show_menu
+  = true
+- content_for :full_screen
+  = true
+.text-center
+  .profile-image.small.circle.margin-top-medium-down.margin-bottom= image_tag @user.image_url
+  h2.small-11.small-centered.big-margin-bottom= content_for(:title)
+  .large-8.large-centered
+    .text-left.big-margin-bottom.border-top= render @messages
+    .show-for-large
+      = form_for @message, html: {style: 'display: inline;'} do |f|
+        = f.hidden_field :to_user_id
+        = f.hidden_field :match_id
+        textarea#message_content placeholder="Send #{@user.first_name} a message..." name="message[content]" rows="3"
+        .text-right
+          a.button
+            == "Send message &nbsp;"
+            = fa_icon "paper-plane"
+    .hide-for-large
+      br
+      br
+      br
+      br
+      = form_for @message, html: {style: 'display: inline;'} do |f|
+        = f.hidden_field :to_user_id
+        = f.hidden_field :match_id
+        .bottom-fixed.bg-light-gray.padding-top
+          .columns.small-10
+            textarea#message_content placeholder="Send #{@user.first_name} a message..." name="message[content]" rows="3"
+          .float-left
+            a.button.large.expand.no-margin
+              = fa_icon "paper-plane"
+javascript:
+  $('textarea').autosize();
+  $(".button").click(function (event) {
+    event.preventDefault();
+    $(event.target).closest('form').submit();
+  });
+  $("html, body").animate({ scrollTop: $(document).height() }, 1000);

@@ -25,10 +25,11 @@ Rails.application.routes.draw do
   end
   resources :loves, only: [:index, :create, :destroy]
   resources :dismissals, only: [:create]
-  resources :matches, only: [:index]
+  resources :matches, only: [:index, :show]
   resources :notifications, only: [:index]
   resources :settings, only: [:index]
   resources :pages, only: [:index]
+  resources :messages, only: [:create]
   resources :facebook_canvas, only: [] do
     collection do
       post :index

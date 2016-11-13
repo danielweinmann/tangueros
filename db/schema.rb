@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112214441) do
+ActiveRecord::Schema.define(version: 20161113211059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,19 @@ ActiveRecord::Schema.define(version: 20161112214441) do
     t.index ["user_id"], name: "index_matches_on_user_id", using: :btree
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "from_user_id",                 null: false
+    t.integer  "to_user_id",                   null: false
+    t.integer  "match_id",                     null: false
+    t.text     "content",                      null: false
+    t.boolean  "read",         default: false, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["from_user_id"], name: "index_messages_on_from_user_id", using: :btree
+    t.index ["match_id"], name: "index_messages_on_match_id", using: :btree
+    t.index ["to_user_id"], name: "index_messages_on_to_user_id", using: :btree
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id",                            null: false
     t.integer  "triggering_user_id"
@@ -59,8 +72,10 @@ ActiveRecord::Schema.define(version: 20161112214441) do
     t.boolean  "read",               default: false, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.integer  "message_id"
     t.index ["love_id"], name: "index_notifications_on_love_id", using: :btree
     t.index ["match_id"], name: "index_notifications_on_match_id", using: :btree
+    t.index ["message_id"], name: "index_notifications_on_message_id", using: :btree
     t.index ["read"], name: "index_notifications_on_read", using: :btree
     t.index ["triggering_user_id"], name: "index_notifications_on_triggering_user_id", using: :btree
     t.index ["user_id", "read"], name: "index_notifications_on_user_id_and_read", using: :btree
@@ -113,8 +128,12 @@ ActiveRecord::Schema.define(version: 20161112214441) do
   add_foreign_key "loves", "users", column: "loved_user_id"
   add_foreign_key "matches", "users"
   add_foreign_key "matches", "users", column: "matched_user_id"
-  add_foreign_key "notifications", "loves", column: "love_id"
+  add_foreign_key "messages", "matches"
+  add_foreign_key "messages", "users", column: "from_user_id"
+  add_foreign_key "messages", "users", column: "to_user_id"
+  add_foreign_key "notifications", "loves"
   add_foreign_key "notifications", "matches"
+  add_foreign_key "notifications", "messages"
   add_foreign_key "notifications", "users"
   add_foreign_key "notifications", "users", column: "triggering_user_id"
 end

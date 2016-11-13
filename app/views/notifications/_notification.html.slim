@@ -1,8 +1,13 @@
-- path = (notification.match.present? ? matches_path : root_path)
+- if notification.match.present?
+  - path = match_path(notification.match)
+- elsif notification.message.present?
+  - path = match_path(notification.message.match)
+- else
+  - path = root_path
 = link_to path do
   .card.notification class=('bg-dark-ice' unless notification.read)
     .row
-      .columns.small-3.large-2= image_tag (notification.triggering_user && notification.match.present? ? notification.triggering_user.image_url : "user.png")
+      .columns.small-3.large-2= image_tag (notification.triggering_user && notification.show_triggering_user? ? notification.triggering_user.image_url : "user.png")
       .columns.small-9.large-10
         h5.dark-gray.no-margin-bottom== notification.content
         h6.gray= "#{time_ago_in_words(notification.created_at)} ago"

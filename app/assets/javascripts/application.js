@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require geocomplete
 //= require toastr
+//= require jquery.autosize
 //= require_tree .
 
 $(function(){ 

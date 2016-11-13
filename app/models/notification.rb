@@ -6,6 +6,7 @@ class Notification < ApplicationRecord
   belongs_to :triggering_user, class_name: "User", optional: true
   belongs_to :love, optional: true
   belongs_to :match, optional: true
+  belongs_to :message, optional: true
   paginates_per 10
 
   after_create do
@@ -21,5 +22,9 @@ class Notification < ApplicationRecord
 
   def self.visible
     joins(:triggering_user).where({users: {active: true}})
+  end
+
+  def show_triggering_user?
+    self.match.present? || self.message.present?
   end
 end
