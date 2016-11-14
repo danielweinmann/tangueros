@@ -10,7 +10,8 @@ class SearchController < ApplicationController
       .visible 
       .where("id <> #{current_user.id}")
       .search(params[:query])
-      .near([current_user.latitude, current_user.longitude], current_user.radius, units: :km)
+      .near([current_user.latitude, current_user.longitude], 22000, units: :km)
+      .reorder("distance")
       .page(params[:page])
   end
 end
