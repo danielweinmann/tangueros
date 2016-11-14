@@ -1,6 +1,6 @@
 ul.menu.text-center.clearfix.row.collapse
   = render partial: "layouts/menu_item", locals: { image: "users.png", title: "Nearby tangueros", path: root_path }
-  = render partial: "layouts/menu_item", locals: { image: "magnifier.png", title: "Search tangueros", path: search_index_path }
+  = render partial: "layouts/menu_item", locals: { image: "magnifier.png", title: "Find tangueros", path: search_index_path }
   = render partial: "layouts/menu_item", locals: { image: "matches.png", title: "Your matches", path: matches_path }
   = render partial: "layouts/menu_item", locals: { image: "heart.png", title: "Tangueros you love", path: loves_path }
   = render partial: "layouts/menu_item", locals: { image: "world.png", title: "Notifications", path: notifications_path, count: current_user.notifications.unread.count }
