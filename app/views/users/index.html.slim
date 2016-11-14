@@ -3,7 +3,7 @@
 - content_for :og_title do
   = "Find out who looooves to dance tango with you ♥ ♥ ♥"
 - content_for :description
-  = "Tangueros is the social network for tango dancers. Get in touch with dancers from all over the world while at the same time you help sustain this culture we love so much 😀"
+  = "Tangueros is the social network for tango dancers. Get in touch with dancers from all over the world while at the same time you help sustain this culture we love so much 😄"
 - if current_user
   - if @completed_registration
     - content_for :facebook_pixel_event
@@ -37,4 +37,4 @@
     h5.margin-top Already have an account? #{ link_to "Sign in", new_user_session_path }.
     br      
   .footer.bottom-fixed.show-for-medium.bg-gray
-    ul.menu style="width: 20rem; margin: 0 auto;"= render "shared/about_menu"
+    ul.menu style="width: 24rem; margin: 0 auto;"= render "shared/about_menu"
