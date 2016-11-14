@@ -1,0 +1,21 @@
+- content_for :title do
+  = "Search tangueros"
+- content_for :show_menu do
+  = true
+.text-center
+  .small-margin-bottom
+    = form_tag(search_index_path, method: "get") do
+      .row.collapse.text-left(data-equalizer)
+        .columns.small-10
+          input#query(type="text" name="query" value=params[:query] placeholder="Who are you looking for?" data-equalizer-watch)
+        .columns.small-2
+          a.button.expand.columns.small-12(data-equalizer-watch)
+            = fa_icon "search"
+  - unless @users.empty?
+    #users_equalizer.row.text-left-small-down(data-equalizer)= render @users
+    .row= paginate @users
+javascript:
+  $(".button").click(function (event) {
+    event.preventDefault();
+    $(event.target).closest('form').submit();
+  });

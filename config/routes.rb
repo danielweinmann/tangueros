@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :settings, only: [:index]
   resources :pages, only: [:index]
   resources :messages, only: [:create]
+  resources :search, only: [:index]
   resources :facebook_canvas, only: [] do
     collection do
       post :index

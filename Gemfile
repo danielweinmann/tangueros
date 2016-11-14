@@ -31,6 +31,7 @@ gem 'sidekiq'
 gem 'koala'
 gem 'kaminari'
 gem 'autosize-rails'
+gem 'pg_search'
 
 group :development, :test do
   gem 'byebug', platform: :mri
