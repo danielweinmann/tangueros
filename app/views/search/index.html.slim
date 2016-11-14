@@ -10,7 +10,7 @@
       .row.collapse.text-left(data-equalizer)
         .columns.small-10
           input#query.no-margin-bottom(type="text" name="query" value=params[:query] placeholder="Who are you looking for?" data-equalizer-watch)
-        .columns.small-2
+        .columns.small-2.gutter-right-large-up
           a.button.expand.columns.small-12.no-margin-bottom(data-equalizer-watch)
             = fa_icon "search"
   - if !@users.empty?
