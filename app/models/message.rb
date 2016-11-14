@@ -15,7 +15,7 @@ class Message < ApplicationRecord
       triggering_user: self.from_user,
       message: self,
       content: "#{self.from_user.full_name} sent you a message. Check it out!",
-      email_subject: "🖋 #{self.from_user.full_name} sent you a message on Tangueros 📜",
+      email_subject: "#{self.from_user.full_name} sent you a message on Tangueros 💌",
       email_content: "#{self.from_user.full_name} sent you a message on Tangueros. <a href='https://tangueros.club/matches/#{self.match.id}'>Click here</a> to read it 😀",
       push_subject: "#{self.from_user.full_name} sent you a message",
       push_content: "Check it out!",
