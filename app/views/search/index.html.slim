@@ -18,6 +18,8 @@
     .row= paginate @users
   - elsif params[:query].present?
     = render "shared/invite", title: "It seems like #{params[:query].titleize} is not on Tangueros...yet!", button_text: "Invite #{params[:query].titleize} to Tangueros", hide_subheader: true
+  - else
+    h3.big-margin-top There are currently #{User.visible.count} tangueros on the app 😄 let's look for them!
 javascript:
   $(".button").click(function (event) {
     event.preventDefault();
