@@ -10,6 +10,8 @@
     = "Do you love dancing with with #{@user.first_name}? Find out who looooves to dance tango with you ♥ ♥ ♥"
 - content_for :image_url do
   = @user.image_url
+- content_for :show_menu do
+  = true
 .text-center
   .profile-image.circle.margin-bottom= image_tag @user.image_url
   h1.no-margin-bottom= @user.full_name
