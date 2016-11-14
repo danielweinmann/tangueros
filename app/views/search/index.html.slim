@@ -2,18 +2,22 @@
   = "Search tangueros"
 - content_for :show_menu do
   = true
+- content_for :full_screen do
+  = true
 .text-center
-  .small-margin-bottom
+  .margin-bottom-medium-up
     = form_tag(search_index_path, method: "get") do
       .row.collapse.text-left(data-equalizer)
         .columns.small-10
-          input#query(type="text" name="query" value=params[:query] placeholder="Who are you looking for?" data-equalizer-watch)
+          input#query.no-margin-bottom(type="text" name="query" value=params[:query] placeholder="Who are you looking for?" data-equalizer-watch)
         .columns.small-2
-          a.button.expand.columns.small-12(data-equalizer-watch)
+          a.button.expand.columns.small-12.no-margin-bottom(data-equalizer-watch)
             = fa_icon "search"
-  - unless @users.empty?
+  - if !@users.empty?
     #users_equalizer.row.text-left-small-down(data-equalizer)= render @users
     .row= paginate @users
+  - elsif params[:query].present?
+    = render "shared/invite", title: "It seems like #{params[:query].titleize} is not on Tangueros...yet!", button_text: "Invite #{params[:query].titleize} to Tangueros", hide_subheader: true
 javascript:
   $(".button").click(function (event) {
     event.preventDefault();

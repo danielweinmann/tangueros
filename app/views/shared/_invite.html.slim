@@ -1,9 +1,11 @@
 .card.large-8.large-centered.text-center
   h3= defined?(title) ? title : "Invite your friends to Tangueros"
-  h4.margin-bottom Want to have a much better experience?
+  - unless defined?(hide_subheader) && hide_subheader
+    h4.margin-bottom Want to have a much better experience?
   .big-margin-top.big-margin-bottom
-    a#invite-button.button.large.facebook.no-margin-bottom Invite your friends
-  h4 You'll have our eternal gratitude and a lot more fun with more tangueros on board! Thanks a lot ❤️
+    a#invite-button.button.large.facebook.no-margin-bottom= defined?(button_text) ? button_text : "Invite your friends"
+  - unless defined?(hide_thanks) && hide_thanks
+    h4 You'll have our eternal gratitude and a lot more fun with more tangueros on board! Thanks a lot ❤️
 javascript:
   $('#invite-button').click(function (event){
     event.preventDefault();
