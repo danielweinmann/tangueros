@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :dismissals
   has_many :notifications
   include PgSearch
-  pg_search_scope :search, against: [:first_name, :last_name], using: { trigram: { threshold: 0.4 } }, ignoring: :accents
+  pg_search_scope :search, against: [:first_name, :last_name], using: { trigram: { threshold: 0.3 } }, ignoring: :accents
 
   reverse_geocoded_by :latitude, :longitude do |user, results|
     if result = results.first
