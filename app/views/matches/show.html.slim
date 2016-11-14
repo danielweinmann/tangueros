@@ -1,12 +1,13 @@
 - content_for :title do
-  = "You and #{@user.full_name} are a match! ♥"
+  = "You and #{ @user.full_name } are a match! ♥"
 - content_for :show_menu
   = true
 - content_for :full_screen
   = true
 .text-center
-  .profile-image.small.circle.margin-top-medium-down.margin-bottom= image_tag @user.image_url
-  h2.small-11.small-centered.big-margin-bottom= content_for(:title)
+  = link_to @user do
+    .profile-image.small.circle.margin-top-medium-down.margin-bottom= image_tag @user.image_url
+  h2.small-11.small-centered.big-margin-bottom== "You and #{ link_to @user.full_name, @user } are a match! ♥"
   .large-8.large-centered
     - unless @messages.empty?
       .text-left.big-margin-bottom.border-top= render @messages

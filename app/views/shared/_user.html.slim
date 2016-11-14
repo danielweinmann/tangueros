@@ -9,6 +9,8 @@ div
           = link_to path do
             h4.dark-gray.no-margin-bottom= user.full_name
             h5.gray= "#{user.city}#{', ' if user.city.present?}#{user.country_name}"
-      - if defined?(destroy) && destroy
-        = link_to destroy, class: 'bottom-right padding gray', data: { confirm: destroy_confirm }, method: :delete do
+          - if defined?(button_text) && defined?(button_path)
+              a.button.small-margin-top-medium-up.no-margin-botton(href=button_path)==button_text
+      - if defined?(destroy_resource) && destroy_resource
+        = link_to destroy_resource, class: 'bottom-right padding gray', data: { confirm: destroy_confirm }, method: :delete do
           = fa_icon 'trash'

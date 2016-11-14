@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     @matches_count = @user.matches.count
     @love = Love.new(loved_user: @user)
     @dismissal = Dismissal.new(dismissed_user: @user)
+    @match = Match.between_users(current_user, @user) if current_user
   end
 
   def roles

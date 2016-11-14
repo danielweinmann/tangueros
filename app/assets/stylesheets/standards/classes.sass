@@ -53,6 +53,10 @@
 .small-margin-top
   margin-top: 0.5rem
 
+.small-margin-top-medium-up
+  @include breakpoint(medium up)
+    margin-top: 0.5rem
+
 .margin-top-medium-down
   @include breakpoint(medium down)
     margin-top: 1rem
@@ -109,6 +113,10 @@
 
 .button
   text-decoration: none
+  @include breakpoint(small only)
+    font-size: 0.6rem
+  @include breakpoint(320 down)
+    font-size: 0.4rem
   &.large
     @include breakpoint(small only)
       font-size: 0.8rem

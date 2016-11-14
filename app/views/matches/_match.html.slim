@@ -1,1 +1,1 @@
-= render partial: "shared/user", locals: { user: match.other_user(current_user), path: match_path(match) }
+= render partial: "shared/user", locals: { user: match.other_user(current_user), path: match_path(match), button_text: "<span class='show-for-medium'>Send a message &nbsp;</span><i class='fa fa-paper-plane'></i>", button_path: match_path(match) }

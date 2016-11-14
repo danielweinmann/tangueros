@@ -1,1 +1,1 @@
-= render partial: "shared/user", locals: { user: love.loved_user, path: user_path(love.loved_user),destroy: love, destroy_confirm: "Are you sure you want to unlove #{love.loved_user.first_name}?" }
+= render partial: "shared/user", locals: { user: love.loved_user, path: user_path(love.loved_user), destroy_resource: love, destroy_confirm: "Are you sure you want to unlove #{love.loved_user.first_name}?" }
