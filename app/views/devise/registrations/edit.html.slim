@@ -1,5 +1,5 @@
 - content_for :title do
-  = "Edit profile"
+  = "Account details"
 .row
   .large-6.large-centered.columns
     = render partial: 'shared/error_messages', resource: resource
@@ -8,7 +8,7 @@
         .large-12.columns
           = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
             .row.margin-bottom
-              h3.text-center Edit profile
+              h3.text-center= content_for(:title)
             .row.small-margin-top
               = f.text_field :first_name, class: "large-12 columns", placeholder: "First name"
             .row

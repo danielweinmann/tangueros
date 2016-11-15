@@ -14,9 +14,20 @@
   - content_for :show_menu do
     = true
 .text-center
-  .profile-image.circle.margin-bottom= image_tag @user.image_url
-  h1.no-margin-bottom= @user.full_name
-  h4.gray.big-margin-bottom = "#{@user.city}#{', ' if @user.city.present?}#{@user.country_name}"
+  .profile-image.circle.margin-bottom(data-path=profile_image_users_path class=("editable" if @user == current_user))
+    = image_tag @user.image_url
+  h1.no-margin-bottom
+    span(data-path=edit_user_registration_path class=("editable" if @user == current_user))= @user.full_name
+  h4.gray.small-margin-bottom
+    span(data-path=location_users_path class=("editable" if @user == current_user))= "#{@user.city}#{', ' if @user.city.present?}#{@user.country_name}"
+  h5.gray.big-margin-bottom
+    span(data-path=roles_users_path class=("editable" if @user == current_user))
+      - if @user.follower? && @user.leader?
+        = "Both a follower and a leader"
+      - elsif @user.follower?
+        = "Follower"
+      - elsif @user.leader?
+        = "Leader"
   .row.text-center.margin-bottom
     .columns.small-8.medium-4.small-centered
       .row
@@ -40,3 +51,8 @@
     - else
       h4.gray.margin-bottom Do you <span class='dark-gray'>already looove</span> dancing with #{ @user.first_name }?
       = render "buttons"
+javascript:
+  $('.editable').click(function(event) {
+    event.preventDefault;
+    location.href = $(event.target).data('path');
+  });

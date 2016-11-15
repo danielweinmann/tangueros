@@ -222,6 +222,19 @@
       img
         width: 50px
         height: 50px
+  &.editable
+    &:hover
+      &:after
+        background: rgba(0, 0, 0, 0.5)
+        color: $white
+        height: 100px
+        padding-top: 30px
+        content: "Change photo"
+        border-bottom-left-radius: 100px
+        border-bottom-right-radius: 100px
+        left: 0
+        right: 0
+        bottom: 0
 
 .menu-title
   @include breakpoint(large up)
@@ -303,3 +316,14 @@
 .gutter-right-large-up
   @include breakpoint(large up)
     padding-right: 1.5625rem !important
+
+.editable
+  position: relative
+  &:hover
+    cursor: pointer
+    &:after
+      font-size: 1rem
+      content: " ✏️"
+      position: absolute
+      right: -24px
+      bottom: 10%
