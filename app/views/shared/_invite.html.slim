@@ -10,7 +10,8 @@ javascript:
   $('#invite-button').click(function (event){
     event.preventDefault();
     FB.ui({method: 'apprequests',
-      message: "Find out who looooves to dance tango with you"
+      message: "Find out who looooves to dance tango with you",
+      filters: ['app_non_users']
     }, function(response){
     });
   });
