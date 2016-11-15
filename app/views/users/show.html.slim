@@ -54,5 +54,5 @@
 javascript:
   $('.editable').click(function(event) {
     event.preventDefault;
-    location.href = $(event.target).data('path');
+    location.href = $(event.currentTarget).data('path');
   });
