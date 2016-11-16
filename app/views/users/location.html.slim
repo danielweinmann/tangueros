@@ -17,6 +17,7 @@
               h5.margin-bottom Don't worry, your privacy is safe with us. We'll never disclose your full address, only your <strong>city</strong> and your <strong>country</strong>.
               = f.hidden_field :latitude
               = f.hidden_field :longitude
+              = f.hidden_field :address
               .margin-bottom
                 #map.map
 javascript:
@@ -27,8 +28,10 @@ javascript:
     })
     .bind("geocode:result", function(event, result){
       var location = result.geometry.location;
+      var address = result.formatted_address;
       $('#user_latitude').val(location.lat());
       $('#user_longitude').val(location.lng());
+      $('#user_address').val(address);
       $('[type=submit]').attr('disabled', false);
     })
   });

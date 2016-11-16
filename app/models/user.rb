@@ -11,6 +11,14 @@ class User < ApplicationRecord
   include PgSearch
   pg_search_scope :search, against: [:first_name, :last_name], using: { trigram: { threshold: 0.3 } }, ignoring: :accents
 
+  geocoded_by :address do |user, results|
+    if result = results.first
+      user.city = result.city
+      user.state = result.state_code
+      user.country = result.country_code
+    end
+  end
+
   reverse_geocoded_by :latitude, :longitude do |user, results|
     if result = results.first
       user.address = result.address
@@ -20,7 +28,9 @@ class User < ApplicationRecord
     end
   end
 
-  after_validation :reverse_geocode, if: ->(user){ user.latitude && user.longitude && (user.latitude_changed? || user.longitude_changed?) }
+  after_validation :geocode, if: ->(user){ user.address.present? and user.address_changed? }
+
+  after_validation :reverse_geocode, if: ->(user){ user.latitude && user.longitude && (user.latitude_changed? || user.longitude_changed?) && !user.address.present? }
 
   after_create do
     SendFacebookInviteNotificationJob.set(wait: 30.minutes).perform_later(self)
