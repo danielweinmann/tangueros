@@ -125,9 +125,13 @@ class User < ApplicationRecord
   end
 
   def facebook_friends
-    return [] unless self.facebook_token.present?
-    @graph = Koala::Facebook::API.new(self.facebook_token, ENV['FACEBOOK_APP_SECRET'])
-    friends = @graph.get_connections("me", "friends")
+    begin
+      @graph = Koala::Facebook::API.new(self.facebook_token, ENV['FACEBOOK_APP_SECRET'])
+      uids = @graph.get_connections("me", "friends").map { |user| user["id"] }
+      User.where("provider = 'facebook' AND uid IN (?)", uids)
+    rescue
+      User.where('1 = 2')
+    end
   end
 
   def send_devise_notification(notification, *args)

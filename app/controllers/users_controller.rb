@@ -5,19 +5,31 @@ class UsersController < ApplicationController
   after_action :verify_policy_scoped, only: %i[]
 
   def index
-    if current_user && current_user.latitude && current_user.longitude
+    if current_user
       if current_user.just_signed_up? && !session[:completed_registration]
         @completed_registration = true
         session[:completed_registration] = true
       end
-      @user = User
-        .visible
-        .where("id <> #{current_user.id}")
-        .with_roles_prefered_by(current_user)
-        .not_loved_by(current_user)
-        .not_dismissed_by(current_user)
-        .near([current_user.latitude, current_user.longitude], current_user.radius, units: :km)
-        .limit(1).first
+      if current_user.facebook_token.present?
+        @user = current_user
+          .facebook_friends
+          .visible
+          .with_roles_prefered_by(current_user)
+          .not_loved_by(current_user)
+          .not_dismissed_by(current_user)
+          .near([current_user.latitude, current_user.longitude], 22000, units: :km)
+          .limit(1).first
+      end
+      unless @user
+        @user = User
+          .visible
+          .where("id <> #{current_user.id}")
+          .with_roles_prefered_by(current_user)
+          .not_loved_by(current_user)
+          .not_dismissed_by(current_user)
+          .near([current_user.latitude, current_user.longitude], current_user.radius, units: :km)
+          .limit(1).first
+      end
       if @user
         @love = Love.new(loved_user: @user)
         @dismissal = Dismissal.new(dismissed_user: @user)
