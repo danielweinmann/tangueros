@@ -68,9 +68,7 @@ class User < ApplicationRecord
       user.facebook_image_url = auth.info.image
       user.facebook_token = auth.credentials.token
     end
-    unless user.facebook_token.present?
-      user.update facebook_token: auth.credentials.token
-    end
+    user.update facebook_token: auth.credentials.token
     user
   end
 
