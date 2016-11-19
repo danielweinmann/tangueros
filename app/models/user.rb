@@ -124,6 +124,12 @@ class User < ApplicationRecord
     self.created_at > 1.hour.ago
   end
 
+  def facebook_friends
+    return [] unless self.facebook_token.present?
+    @graph = Koala::Facebook::API.new(current_user.facebook_token, ENV['FACEBOOK_APP_SECRET'])
+    friends = @graph.get_connections("me", "friends")
+  end
+
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later(wait: 2.seconds)
   end
