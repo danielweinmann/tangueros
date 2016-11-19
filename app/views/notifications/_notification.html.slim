@@ -1,7 +1,12 @@
 - if notification.match.present?
   - path = match_path(notification.match)
 - elsif notification.message.present?
-  - path = match_path(notification.message.match)
+  - if notification.message.match.present?
+    - path = match_path(notification.message.match)
+  - elsif Match.between_users(notification.message.to_user, notification.message.from_user).present?
+    - path = match_path(Match.between_users(notification.message.to_user, notification.message.from_user))
+  - else
+    - path = user_path(notification.message.from_user)
 - else
   - path = root_path
 = link_to path do

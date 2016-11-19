@@ -2,6 +2,7 @@ class Match < ApplicationRecord
   belongs_to :user
   belongs_to :matched_user, class_name: "User"
   has_many :notifications, dependent: :destroy
+  has_many :messages, dependent: :nullify
 
   after_create do
     [self.user, self.matched_user].each do |user|
