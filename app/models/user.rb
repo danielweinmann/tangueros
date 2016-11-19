@@ -126,7 +126,7 @@ class User < ApplicationRecord
 
   def facebook_friends
     return [] unless self.facebook_token.present?
-    @graph = Koala::Facebook::API.new(current_user.facebook_token, ENV['FACEBOOK_APP_SECRET'])
+    @graph = Koala::Facebook::API.new(self.facebook_token, ENV['FACEBOOK_APP_SECRET'])
     friends = @graph.get_connections("me", "friends")
   end
 
